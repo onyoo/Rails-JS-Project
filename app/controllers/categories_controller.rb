@@ -4,7 +4,8 @@ class CategoriesController < ApplicationController
   end
 
   def create
-    redirect to category_path(Category.create(category_params))
+    @category = Category.find_or_create_by(category_params)
+    redirect_to category_path(@category)
   end
 
   def edit

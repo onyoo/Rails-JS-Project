@@ -1,2 +1,6 @@
 
 <%= render "new_cat_link" %>
+
+<%= @categories.each do |category| %>
+  <%= render partial: "index", locals: { category: category } %>
+<% end %>
