@@ -8,6 +8,10 @@ class User < ActiveRecord::Base
   has_many :categories, through: :subjects
   has_many :resources
 
-  validates_presence_of :first_name, :last_name
+  validates_presence_of :first_name, :last_name, :username
+
+
+
+
 
 end
