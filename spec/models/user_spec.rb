@@ -6,13 +6,13 @@ RSpec.describe User, type: :model do
 ### NAMEs
 
     it "ensures a user has a first name" do
-      expect(User.create(first_name: "Scabbers")).to be_valid
+      expect(User.create(first_name: "Scabbers", last_name: "McScabbers", email: "McScabbers@gmail.com", username: "Scabbers", password: "supersecure")).to be_valid
     end
 
     it "is invalid with no first name, first name that is one letter" do
-      expect(User.create(first_name: nil)).to_not be_valid
-      expect(User.create(first_name: "")).to_not be_valid
-      expect(User.create(first_name: " ")).to_not be_valid
+      expect(User.create(first_name: nil, last_name: "McScabbers", email: "McScabbers@gmail.com", username: "Scabbers", password: "supersecure")).to_not be_valid
+      expect(User.create(first_name: "", last_name: "McScabbers", email: "McScabbers@gmail.com", username: "Scabbers", password: "supersecure")).to_not be_valid
+      expect(User.create(first_name: " ", last_name: "McScabbers", email: "McScabbers@gmail.com", username: "Scabbers", password: "supersecure")).to_not be_valid
     end
 
     it "ensures a user has a last name" do
@@ -20,7 +20,9 @@ RSpec.describe User, type: :model do
     end
 
     it "is invalid with no last name" do
-      expect(User.create(first_name: "Scabbers", last_name: nil)).to_not be_valid
+      expect(User.create(first_name: "Scabbers", last_name: nil, email: "McScabbers@gmail.com", username: "Scabbers", password: "supersecure")).to_not be_valid
+      expect(User.create(first_name: "Scabbers", last_name: "", email: "McScabbers@gmail.com", username: "Scabbers", password: "supersecure")).to_not be_valid
+      expect(User.create(first_name: "Scabbers", last_name: " ", email: "McScabbers@gmail.com", username: "Scabbers", password: "supersecure")).to_not be_valid
     end
 
 ### EMAIL
@@ -31,7 +33,7 @@ RSpec.describe User, type: :model do
     end
 
     it "is invalid with no email" do
-      expect(User.create(first_name: "Scabbers", last_name: "McScabbers", email: nil)).to_not be_valid
+      expect(User.create(first_name: "Scabbers", last_name: "McScabbers", email: "", username: "Scabbers", password: "supersecure")).to_not be_valid
     end
 
     it "ensures a user has a valid email" do
@@ -69,7 +71,7 @@ RSpec.describe User, type: :model do
   context 'User associations' do
 
     before do
-      User.create(first_name: "Scabbers", last_name: "McScabbers", email: "McScabbers@gmail.com", username: "Scabbers")
+      User.create(first_name: "Scabbers", last_name: "McScabbers", email: "McScabbers@gmail.com", username: "Scabbers", password: "supersecure")
     end
 
     it 'has many posts' do
