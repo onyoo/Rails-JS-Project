@@ -1,6 +1,35 @@
 require 'rails_helper'
 
 RSpec.describe Subject, type: :model do
+
+  context 'attributes' do
+
+    it 'has a name, category_id, and user_id' do
+      expect(Subject.create(name: "한국어", category_id: 1, user_id: 5)).to be_valid
+    end
+
+  end
+
+
+  context 'validations' do 
+
+    it 'has a unique name' do
+      Subject.new(name: "한국어", category_id: 1, user_id: 1)
+    end
+
+    it 'is invalid without a name' do
+      try_1 = Subject.new(name: nil, category_id: 1, user_id: 1)
+      try_2 = Subject.new(name: "", category_id: 1, user_id: 1)
+      try_3 = Subject.new(name: " ", category_id: 1, user_id: 1)
+
+      expect(try_1).to have(1).errors_on(:name)
+      expect(try_2).to have(1).errors_on(:name)
+      expect(try_3).to have(1).errors_on(:name)
+
+    end
+
+  end
+
   context 'User associations' do
 
     before do

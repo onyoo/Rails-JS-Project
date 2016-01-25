@@ -1,18 +1,20 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  context 'attributes and validations' do
+  context 'attributes' do
 
-### NAMEs
-
-    it "ensures a user has a first name" do
+    it "ensures a user has a first name, last name, email, username, password" do
       expect(User.create(first_name: "Scabbers", last_name: "McScabbers", email: "McScabbers@gmail.com", username: "Scabbers", password: "supersecure")).to be_valid
     end
 
+  end
+
+  context 'name validations' do
+
     it "is invalid with no first name, first name that is one letter" do
-      try_1 = User.create(first_name: nil, last_name: "McScabbers", email: "McScabbers@gmail.com", username: "Scabbers", password: "supersecure")
-      try_2 = User.create(first_name: "", last_name: "McScabbers", email: "McScabbers@gmail.com", username: "Scabbers", password: "supersecure")
-      try_3 = User.create(first_name: " ", last_name: "McScabbers", email: "McScabbers@gmail.com", username: "Scabbers", password: "supersecure")
+      try_1 = User.new(first_name: nil, last_name: "McScabbers", email: "McScabbers@gmail.com", username: "Scabbers", password: "supersecure")
+      try_2 = User.new(first_name: "", last_name: "McScabbers", email: "McScabbers@gmail.com", username: "Scabbers", password: "supersecure")
+      try_3 = User.new(first_name: " ", last_name: "McScabbers", email: "McScabbers@gmail.com", username: "Scabbers", password: "supersecure")
 
       expect(try_1).to have(1).errors_on(:first_name)
       expect(try_2).to have(1).errors_on(:first_name)
@@ -20,26 +22,18 @@ RSpec.describe User, type: :model do
 
     end
 
-    it "ensures a user has a last name" do
-      expect(User.create(first_name: "Scabbers", last_name: "McScabbers", email: "McScabbers@gmail.com", username: "Scabbers", password: "supersecure")).to be_valid
-    end
-
     it "is invalid with no last name" do
-      try_1 = User.create(first_name: "Scabbers", last_name: nil, email: "McScabbers@gmail.com", username: "Scabbers", password: "supersecure")
-      try_2 = User.create(first_name: "Scabbers", last_name: "", email: "McScabbers@gmail.com", username: "Scabbers", password: "supersecure")
-      try_3 = User.create(first_name: "Scabbers", last_name: " ", email: "McScabbers@gmail.com", username: "Scabbers", password: "supersecure")
+      try_1 = User.new(first_name: "Scabbers", last_name: nil, email: "McScabbers@gmail.com", username: "Scabbers", password: "supersecure")
+      try_2 = User.new(first_name: "Scabbers", last_name: "", email: "McScabbers@gmail.com", username: "Scabbers", password: "supersecure")
+      try_3 = User.new(first_name: "Scabbers", last_name: " ", email: "McScabbers@gmail.com", username: "Scabbers", password: "supersecure")
     
       expect(try_1).to have(1).errors_on(:last_name)
       expect(try_2).to have(1).errors_on(:last_name)
       expect(try_3).to have(1).errors_on(:last_name)
     end
+  end
 
-### EMAIL
-
-    it "ensures a user has an email" do
-      expect(User.create(first_name: "Scabbers", last_name: "McScabbers", email: "McScabbers@gmail.com", username: "Scabbers", password: "supersecure")).to be_valid
-      expect(User.create(first_name: "Scabbers", last_name: "McScabbers", email: "McScabbers@learn.co", username: "Scabbers", password: "supersecure")).to be_valid
-    end
+  context 'email validations' do
 
     it "ensures a user has a valid email" do
       try_1 = User.new(first_name: "Scabbers", last_name: "McScabbers", email: "McScabbersgmail.com", username: "Scabbers", password: "supersecure")
@@ -57,26 +51,29 @@ RSpec.describe User, type: :model do
 
     it "is invalid if email already exists" do
       User.create(first_name: "Scabbers", last_name: "McScabbers", email: "McScabbers@gmail.com", username: "Scabbers", password: "supersecure")
+      
       try_1 = User.new(first_name: "Scabbers", last_name: "McScabbers", email: "McScabbers@gmail.com", username: "Scabbers", password: "supersecure")
       
       expect(try_1).to have(1).errors_on(:email)
     end
+  end
 
-### USERNAME
-
-    it "ensures a user has a username" do
-      expect(User.create(first_name: "Scabbers", last_name: "McScabbers", email: "McScabbers@gmail.com", username: "Scabbers", password: "supersecure")).to be_valid
-    end
+  context 'username validations' do
 
     it "is invalid with no username" do
       expect(User.create(first_name: "Scabbers", last_name: "McScabbers", email: "McScabbers@gmail.com", username: nil, password: "supersecure")).to_not be_valid
     end
+  end
 
-### PASSWORD
+  context 'password validations' do
+
     it "has a password that is 8-72 characters long" do
-      expect(User.create(first_name: "Scabbers", last_name: "McScabbers", email: "McScabbers@gmail.com", username: "Scabbers", password: "supersecure")).to be_valid
-      expect(User.create(first_name: "Scabbers", last_name: "McScabbers", email: "McScabbers@gmail.com", username: "Scabbers", password: "hi")).to_not be_valid
-      expect(User.create(first_name: "Scabbers", last_name: "McScabbers", email: "McScabbers@gmail.com", username: "Scabbers", password: nil)).to_not be_valid
+      try_1 = User.new(first_name: "Scabbers", last_name: "McScabbers", email: "McScabbers@gmail.com", username: "Scabbers", password: "hi")
+      try_2 = User.new(first_name: "Scabbers", last_name: "McScabbers", email: "McScabbers@gmail.com", username: "Scabbers", password: nil)
+
+      expect(try_1).to have(1).errors_on(:password)
+      expect(try_2).to have(1).errors_on(:password)
+
     end
 
   end
