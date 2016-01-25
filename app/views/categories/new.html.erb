@@ -1,2 +1,9 @@
-<h1>Categories#new</h1>
-<p>Find me in app/views/categories/new.html.erb</p>
+<h3>Create a new category. Please make sure it has an origional name!</h3>
+
+<div class="form">
+
+  <%= form_for @category do |f| %>
+    <%= render partial: "form", locals: {f: f} %>
+  <% end %>
+  
+</div>
