@@ -15,9 +15,10 @@
  */
 
 body {
-  background-image: url("/images/british_lib_shade.jpg");
+  background-image: url("british_museum_shade.jpg");
   background-size: cover;
   width: 100%;
+  margin: 0;
 }
 
 #login {
@@ -29,34 +30,46 @@ body {
 }
 
 #headder {
-  background-color: #F4F5F9;
   position: fixed;
-  width: 100%;
+
+  width: 98%;
+  left: 1%;
   height: 90px;
-  border: 5px solid #0F1871;
   top: 0;
   box-sizing: border-box;
-}
 
-#title {
-  padding: 0 0 0 3%;
-  vertical-align: middle;
+  border: 5px solid black;
+
+  background: #969696;
+  background: -moz-linear-gradient(top,  #969696 0%, #d2d2d2 100%);
+  background: -webkit-linear-gradient(top,  #969696 0%,#d2d2d2 100%);
+  background: linear-gradient(to bottom,  #969696 0%,#d2d2d2 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#969696', endColorstr='#d2d2d2',GradientType=0 );
+
 }
 
 #content {
   background-color: #F4F5F9;
-  margin: 100px 2.5% 0;
-  border: 5px solid #97C9E8;
-  padding: 2%;
-  width: 90%;
-  /*box-sizing: border-box;*/
+  margin: 100px 3% 0;
+  padding: .5em;
+  border: 5px solid black;
+  width: 94%;
+  right: 3%;
+  box-sizing: border-box;
 }
 
 #slogan {
   background-color: #97C9E8;
   position: fixed;
   bottom: 0;
+  text-align: center;
+  vertical-align: middle;
   width: 100%;
+}
+
+#title {
+  padding: 0 0 0 3%;
+  vertical-align: middle;
 }
 
 a#logout, a#home {
@@ -77,131 +90,6 @@ a#logout:hover {
 
 a#home:hover {
   background-color: lightgreen;
-}
-
-/*~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-        /*Categories*/
-/*~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-
-.category {
-  font-weight: bold;
-  font-size: 1.5em;
-  font-family: 'Josefin Sans', sans-serif;
-  text-align: center;
-  padding-bottom: 1em;
-  width: 49.5%;
-  border-radius: 5px;
-  position: relative;
-
-  background: #c9c9c9;
-  background: -moz-linear-gradient(top,  #c9c9c9 0%, #e5e5e5 0%, #e5e5e5 62%, #c9c9c9 100%);
-  background: -webkit-linear-gradient(top,  #c9c9c9 0%,#e5e5e5 0%,#e5e5e5 62%,#c9c9c9 100%);
-  background: linear-gradient(to bottom,  #c9c9c9 0%,#e5e5e5 0%,#e5e5e5 62%,#c9c9c9 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c9c9c9', endColorstr='#c9c9c9',GradientType=0 );
-
-
-  display: inline-block;
-  vertical-align: center;
-}
-
-.edit_feature {
-  font-size: .7em;
-  position: absolute;
-  bottom: .5%;
-  right: 1%;
-}
-
-.delete {
-  display: inline-block;
-}
-
-.edit {
-  display: block;
-}
-
-
-/*~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-        /*Topics*/
-/*~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-
-
-.topic {
-  font-weight: bold;
-  font-size: 1.5em;
-  font-family: 'Josefin Sans', sans-serif;
-  text-align: center;
-  padding-bottom: 1em;
-  width: 49.5%;
-  border-radius: 5px;
-  position: relative;
-
-  background: #c9c9c9;
-  background: -moz-linear-gradient(top,  #c9c9c9 0%, #e5e5e5 0%, #e5e5e5 62%, #c9c9c9 100%);
-  background: -webkit-linear-gradient(top,  #c9c9c9 0%,#e5e5e5 0%,#e5e5e5 62%,#c9c9c9 100%);
-  background: linear-gradient(to bottom,  #c9c9c9 0%,#e5e5e5 0%,#e5e5e5 62%,#c9c9c9 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c9c9c9', endColorstr='#c9c9c9',GradientType=0 );
-
-
-  display: inline-block;
-  vertical-align: center;
-}
-
-/*~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-        /*Resources*/
-/*~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-
-.resource {
-  font-weight: bold;
-  font-size: 1.5em;
-  font-family: 'Josefin Sans', sans-serif;
-  text-align: center;
-  padding-bottom: 1em;
-  width: 49.5%;
-  border-radius: 5px;
-  position: relative;
-
-  background: #c9c9c9;
-  background: -moz-linear-gradient(top,  #c9c9c9 0%, #e5e5e5 0%, #e5e5e5 62%, #c9c9c9 100%);
-  background: -webkit-linear-gradient(top,  #c9c9c9 0%,#e5e5e5 0%,#e5e5e5 62%,#c9c9c9 100%);
-  background: linear-gradient(to bottom,  #c9c9c9 0%,#e5e5e5 0%,#e5e5e5 62%,#c9c9c9 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c9c9c9', endColorstr='#c9c9c9',GradientType=0 );
-
-
-  display: inline-block;
-  vertical-align: center;
-}
-
-/*~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-          /*Users*/
-/*~~~~~~~~~~~~~~~~~~~~~~~~~~*/
-
-#username {
-  font-weight: bold;
-  text-align: center;
-  text-decoration: underline;
-}
-
-#user_level {
-  background-color: lightgreen;
-  width: 110px;
-}
-
-.user_headers {
-  font-family: 'Josefin Sans', sans-serif;
-  font-weight: bold;
-  text-align: center;
-}
-
-.user_links {
-  background: #c9c9c9;
-  background: -moz-linear-gradient(top,  #c9c9c9 0%, #e5e5e5 0%, #e5e5e5 62%, #c9c9c9 100%);
-  background: -webkit-linear-gradient(top,  #c9c9c9 0%,#e5e5e5 0%,#e5e5e5 62%,#c9c9c9 100%);
-  background: linear-gradient(to bottom,  #c9c9c9 0%,#e5e5e5 0%,#e5e5e5 62%,#c9c9c9 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c9c9c9', endColorstr='#c9c9c9',GradientType=0 );
-
-  width: 49.7%;
-  display: inline-block;
-  text-align: center;
 }
 
 

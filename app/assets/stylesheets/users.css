@@ -1,0 +1,32 @@
+// Place all the styles related to the users controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+#username {
+  font-weight: bold;
+  text-align: center;
+  text-decoration: underline;
+}
+
+#user_level {
+  background-color: lightgreen;
+  width: 110px;
+}
+
+.user_headers {
+  font-family: 'Josefin Sans', sans-serif;
+  font-weight: bold;
+  text-align: center;
+}
+
+.user_links {
+  background: #c9c9c9;
+  background: -moz-linear-gradient(top,  #c9c9c9 0%, #e5e5e5 0%, #e5e5e5 62%, #c9c9c9 100%);
+  background: -webkit-linear-gradient(top,  #c9c9c9 0%,#e5e5e5 0%,#e5e5e5 62%,#c9c9c9 100%);
+  background: linear-gradient(to bottom,  #c9c9c9 0%,#e5e5e5 0%,#e5e5e5 62%,#c9c9c9 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c9c9c9', endColorstr='#c9c9c9',GradientType=0 );
+
+  width: 49.7%;
+  display: inline-block;
+  text-align: center;
+}
