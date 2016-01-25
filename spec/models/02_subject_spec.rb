@@ -5,7 +5,7 @@ RSpec.describe Subject, type: :model do
   context 'attributes' do
 
     it 'has a name, category_id, and user_id' do
-      expect(Subject.create(name: "한국어", category_id: 1, user_id: 5)).to be_valid
+      expect(Subject.create(name: "한국어", category_id: 1, user_id: 1)).to be_valid
     end
 
   end
@@ -26,6 +26,18 @@ RSpec.describe Subject, type: :model do
       expect(try_2).to have(1).errors_on(:name)
       expect(try_3).to have(1).errors_on(:name)
 
+    end
+
+    it 'is invalid without a user' do
+      try_1 = Subject.new(name: "한국어", category_id: 1, user_id: nil)
+
+      expect(try_1).to have(1).errors_on(:user_id)
+    end
+
+    it 'is invalid without a category' do
+      try_1 = Subject.new(name: "한국어", category_id: nil, user_id: 1)
+
+      expect(try_1).to have(1).errors_on(:category_id)
     end
 
   end
