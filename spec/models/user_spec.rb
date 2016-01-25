@@ -10,9 +10,14 @@ RSpec.describe User, type: :model do
     end
 
     it "is invalid with no first name, first name that is one letter" do
-      expect(User.create(first_name: nil, last_name: "McScabbers", email: "McScabbers@gmail.com", username: "Scabbers", password: "supersecure")).to_not be_valid
-      expect(User.create(first_name: "", last_name: "McScabbers", email: "McScabbers@gmail.com", username: "Scabbers", password: "supersecure")).to_not be_valid
-      expect(User.create(first_name: " ", last_name: "McScabbers", email: "McScabbers@gmail.com", username: "Scabbers", password: "supersecure")).to_not be_valid
+      try_1 = User.create(first_name: nil, last_name: "McScabbers", email: "McScabbers@gmail.com", username: "Scabbers", password: "supersecure")
+      try_2 = User.create(first_name: "", last_name: "McScabbers", email: "McScabbers@gmail.com", username: "Scabbers", password: "supersecure")
+      try_3 = User.create(first_name: " ", last_name: "McScabbers", email: "McScabbers@gmail.com", username: "Scabbers", password: "supersecure")
+
+      expect(try_1).to have(1).errors_on(:first_name)
+      expect(try_2).to have(1).errors_on(:first_name)
+      expect(try_3).to have(1).errors_on(:first_name)
+
     end
 
     it "ensures a user has a last name" do
@@ -20,9 +25,13 @@ RSpec.describe User, type: :model do
     end
 
     it "is invalid with no last name" do
-      expect(User.create(first_name: "Scabbers", last_name: nil, email: "McScabbers@gmail.com", username: "Scabbers", password: "supersecure")).to_not be_valid
-      expect(User.create(first_name: "Scabbers", last_name: "", email: "McScabbers@gmail.com", username: "Scabbers", password: "supersecure")).to_not be_valid
-      expect(User.create(first_name: "Scabbers", last_name: " ", email: "McScabbers@gmail.com", username: "Scabbers", password: "supersecure")).to_not be_valid
+      try_1 = User.create(first_name: "Scabbers", last_name: nil, email: "McScabbers@gmail.com", username: "Scabbers", password: "supersecure")
+      try_2 = User.create(first_name: "Scabbers", last_name: "", email: "McScabbers@gmail.com", username: "Scabbers", password: "supersecure")
+      try_3 = User.create(first_name: "Scabbers", last_name: " ", email: "McScabbers@gmail.com", username: "Scabbers", password: "supersecure")
+    
+      expect(try_1).to have(1).errors_on(:last_name)
+      expect(try_2).to have(1).errors_on(:last_name)
+      expect(try_3).to have(1).errors_on(:last_name)
     end
 
 ### EMAIL
@@ -30,10 +39,6 @@ RSpec.describe User, type: :model do
     it "ensures a user has an email" do
       expect(User.create(first_name: "Scabbers", last_name: "McScabbers", email: "McScabbers@gmail.com", username: "Scabbers", password: "supersecure")).to be_valid
       expect(User.create(first_name: "Scabbers", last_name: "McScabbers", email: "McScabbers@learn.co", username: "Scabbers", password: "supersecure")).to be_valid
-    end
-
-    it "is invalid with no email" do
-      expect(User.create(first_name: "Scabbers", last_name: "McScabbers", email: "", username: "Scabbers", password: "supersecure")).to_not be_valid
     end
 
     it "ensures a user has a valid email" do
@@ -51,8 +56,10 @@ RSpec.describe User, type: :model do
     end
 
     it "is invalid if email already exists" do
-      User.create(first_name: "Scabbers", last_name: "McScabbers", email: "McScabbers@gmail.com")
-      expect(User.create(first_name: "Scabbers", last_name: "McScabbers", email: "McScabbers@gmail.com")).to_not be_valid
+      User.create(first_name: "Scabbers", last_name: "McScabbers", email: "McScabbers@gmail.com", username: "Scabbers", password: "supersecure")
+      try_1 = User.new(first_name: "Scabbers", last_name: "McScabbers", email: "McScabbers@gmail.com", username: "Scabbers", password: "supersecure")
+      
+      expect(try_1).to have(1).errors_on(:email)
     end
 
 ### USERNAME
