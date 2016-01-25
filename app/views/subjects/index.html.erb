@@ -1,2 +1,6 @@
-<h1>Subjects#index</h1>
-<p>Find me in app/views/subjects/index.html.erb</p>
+
+
+
+<%= @subjects.each do |subject| %>
+  <%= render partial: "application/index", locals: { object: subject } %>
+<% end %>
