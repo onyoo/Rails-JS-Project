@@ -40,6 +40,7 @@ group :development, :test do
   gem 'byebug'
   gem 'rspec-core'
   gem 'rspec-rails'
+  gem 'rspec-collection_matchers', '~> 1.1.2'
   gem 'spring'
   gem 'capybara'
   gem 'pry'
