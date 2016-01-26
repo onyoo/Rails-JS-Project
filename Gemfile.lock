@@ -41,6 +41,8 @@ GEM
     bcrypt (3.1.10)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
+    bootstrap-sass (3.1.1.1)
+      sass (~> 3.2)
     builder (3.2.2)
     byebug (8.2.1)
     capybara (2.6.0)
@@ -61,13 +63,6 @@ GEM
     concurrent-ruby (1.0.0)
     database_cleaner (1.5.1)
     debug_inspector (0.0.2)
-    devise (3.5.4)
-      bcrypt (~> 3.0)
-      orm_adapter (~> 0.1)
-      railties (>= 3.2.6, < 5)
-      responders
-      thread_safe (~> 0.1)
-      warden (~> 1.2.3)
     diff-lcs (1.2.5)
     erubis (2.7.0)
     execjs (2.6.0)
@@ -93,7 +88,6 @@ GEM
     multi_json (1.11.2)
     nokogiri (1.6.7.2)
       mini_portile2 (~> 2.0.0.rc2)
-    orm_adapter (0.5.0)
     pry (0.10.3)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
@@ -118,6 +112,8 @@ GEM
       activesupport (>= 4.2.0.beta, < 5.0)
       nokogiri (~> 1.6.0)
       rails-deprecated_sanitizer (>= 1.0.1)
+    rails-footnotes (4.1.7)
+      rails (>= 3.2)
     rails-html-sanitizer (1.0.2)
       loofah (~> 2.0)
     railties (4.2.5)
@@ -128,8 +124,6 @@ GEM
     rake (10.5.0)
     rdoc (4.2.1)
       json (~> 1.4)
-    responders (2.1.1)
-      railties (>= 4.2.0, < 5.1)
     rspec-collection_matchers (1.1.2)
       rspec-expectations (>= 2.99.0.beta1)
     rspec-core (3.4.1)
@@ -159,6 +153,9 @@ GEM
     sdoc (0.4.1)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
+    simple_form (3.2.1)
+      actionpack (> 4, < 5.1)
+      activemodel (> 4, < 5.1)
     slop (3.6.0)
     spring (1.6.2)
     sprockets (3.5.2)
@@ -179,8 +176,6 @@ GEM
     uglifier (2.7.2)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
-    warden (1.2.4)
-      rack (>= 1.0)
     web-console (2.2.1)
       activemodel (>= 4.0)
       binding_of_caller (>= 0.7.2)
@@ -194,20 +189,22 @@ PLATFORMS
 
 DEPENDENCIES
   bcrypt
+  bootstrap-sass
   byebug
   capybara
   coffee-rails (~> 4.1.0)
   database_cleaner
-  devise
   jbuilder (~> 2.0)
   jquery-rails
   pry
   rails (= 4.2.5)
+  rails-footnotes
   rspec-collection_matchers (~> 1.1.2)
   rspec-core
   rspec-rails
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
+  simple_form
   spring
   sqlite3
   turbolinks
