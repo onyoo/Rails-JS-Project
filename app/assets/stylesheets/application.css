@@ -64,6 +64,16 @@ body {
   vertical-align: middle;
 }
 
+#header_welcome {
+  font-size: 1.5em;
+  color: blue;
+  margin-top: 1em;
+  position: fixed;
+  top: 22px;
+  right: 35px;
+
+}
+
 #flashnotice {
   width: 25%;
   margin-bottom: .2em;
@@ -84,8 +94,8 @@ body {
   text-align: right;
   position: fixed;
   z-index: 100;
-  top: 30px;
-  right: 15px;
+  top: 17px;
+  right: 35px;
 }
 
 a#logout, a#login {

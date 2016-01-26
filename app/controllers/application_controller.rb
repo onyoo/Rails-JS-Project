@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
-  helper_method :current_user   ## allows method to be called in views, not just other controllers
+  helper_method :current_user , :require_user  ## allows method to be called in views, not just other controllers
 
   def home
     render "home"
