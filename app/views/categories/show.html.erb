@@ -1,6 +1,10 @@
-hosdihf
-<%= @category.name %>
-<% binding.pry %>
-<%= @category.subjects.each do |subject| %>
-  <%= render partial: "application/index", locals: { object: subject } %>
-<% end %>
+Category: <%= @category.name %>
+
+<%= link_to "Make a new Subject!", new_subject_path %>
+
+
+<ul>
+  <%= @category.subjects.each do |subject| %>
+    <li><%= render partial: "application/index", locals: { object: subject } %></li>
+  <% end %>
+</ul>

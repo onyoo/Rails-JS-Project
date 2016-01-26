@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
   get 'home' => 'application#home'
 
-  get 'categories/:id/new' => 'subjects#new'
+  get 'categories/:id/new' => 'subjects#new', as: "new_subject"
 
   get 'login' => 'sessions#new'
   post 'login' => 'sessions#create'

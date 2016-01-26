@@ -6,6 +6,12 @@
 <% end %>
 
 <% if defined? subject_id %>
+  <%= f.label :url %>
+  <%= f.text_field :url %>
+
+  <%= f.label :description %>
+  <%= f.text_field :description %>
+
   <%= f.hidden_field :subject_id %>
 <% end %>
 

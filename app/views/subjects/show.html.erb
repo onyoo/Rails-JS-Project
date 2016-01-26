@@ -1,2 +1,12 @@
-<h1>Subjects#show</h1>
-<p>Find me in app/views/subjects/show.html.erb</p>
+Category: <%= @subject.category.name %> <br>
+
+Subject: <%= @subject.name %> <br>
+
+<%= link_to "Make a new Resource!", { controller: "resources", action: "new", subject_id: @subject.id} %>
+
+
+<ul>
+  <%= @subject.resources.each do |resource| %>
+    <li><%= render partial: "application/index", locals: { object: resource } %></li>
+  <% end %>
+</ul>

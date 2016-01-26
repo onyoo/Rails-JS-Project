@@ -1,2 +1,8 @@
-<h1>Resources#show</h1>
-<p>Find me in app/views/resources/show.html.erb</p>
+Category: <%= @resource.category.name %> <br>
+
+Subject: <%= @resource.subject.name %> <br>
+
+<%= link_to "edit this resource (coming soon)!" %> <br>
+
+
+<%= render partial: "index", locals: { resource: @resource } %>

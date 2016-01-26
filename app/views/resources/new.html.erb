@@ -1,2 +1,10 @@
-<h1>Resources#new</h1>
-<p>Find me in app/views/resources/new.html.erb</p>
+<%= render partial: "application/new_object_instructions", locals: { object: @resource } %>
+
+<div class="form">
+
+  <%= form_for @resource do |f| %>
+<% binding.pry %>
+    <%= render partial: "application/form", locals: {f: f, subject_id: @resource.subject_id } %>
+  <% end %>
+  
+</div>

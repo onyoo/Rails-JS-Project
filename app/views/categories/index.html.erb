@@ -1,6 +1,8 @@
 
 <%= render partial: "application/new_link", locals: { object: @categories[0] } %>
 
-<%= @categories.each do |category| %>
-  <%= render partial: "application/index", locals: { object: category } %>
-<% end %>
+<ul>
+  <%= @categories.each do |category| %>
+    <li><%= render partial: "application/index", locals: { object: category } %></li>
+  <% end %>
+</ul>

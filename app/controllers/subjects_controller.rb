@@ -7,13 +7,8 @@ class SubjectsController < ApplicationController
   end
 
   def create
-    binding.pry
-    if @subject = Subject.find_by(params[:subject][:name])
-      redirect_to subject_path(@subject)
-    else
-      @subject = Subject.find_or_create_by(subject_params)
-      redirect_to subject_path(@subject)
-    end
+    @subject = Subject.find_or_create_by(subject_params)
+    redirect_to subject_path(@subject)
   end
 
   def edit
@@ -38,7 +33,7 @@ class SubjectsController < ApplicationController
   end
 
   def show
-    @subjects = Subject.all
+    @subject = Subject.find(params[:id])
   end
 
   private
