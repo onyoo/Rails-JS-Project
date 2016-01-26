@@ -2,11 +2,7 @@
 
   <h1>Log in</h1>
 
-  <div class="container">  
-    <% flash.each do |name, message| %>
-      <%= content_tag :div, message, :id => "flash#{name}" %>
-    <% end %>
-  </div> <!-- container -->
+<%= render partial: "flashnotice", locals: { flash: flash } %>
 
   <div class="login_form">
     <%= form_for(:session, url: login_path) do |f| %> 
