@@ -1,4 +1,6 @@
 class CategoriesController < ApplicationController
+  before_action :require_user, only: [:index, :show]
+
   def new
     @category = Category.new
   end
@@ -26,6 +28,7 @@ class CategoriesController < ApplicationController
   end
 
   def index
+    binding.pry
     @categories = Category.all
   end
 

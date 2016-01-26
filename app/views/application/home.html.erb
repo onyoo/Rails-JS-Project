@@ -1,5 +1,11 @@
 <h1>Welcome to LARGE! The Learning Resource Guide!</h1>
 
+<% if session[:user_id] %>
+  <%= "You are logged in!" %>
+<% else %>
+  <%= "You are NOT logged in!" %>
+<% end %>
+
 
 <div id="categories_index">
   <%= link_to 'Categories', categories_path %>
