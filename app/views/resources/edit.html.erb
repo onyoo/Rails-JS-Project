@@ -1,7 +1,5 @@
-<h1>Resources#edit</h1>
-<p>Find me in app/views/resources/edit.html.erb</p>
+<%= render partial: "application/edit_object_instructions", locals: { object: @resource } %>
 
-
-  <%= form_for @resource do |f| %>
-    <%= render partial: "application/form", locals: {f: f, subject_id: @resource.subject_id } %>
-  <% end %>
+<%= form_for @resource do |f| %>
+  <%= render partial: "application/form", locals: {f: f, subject_id: @resource.subject_id } %>
+<% end %>

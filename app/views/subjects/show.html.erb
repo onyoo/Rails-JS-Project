@@ -2,6 +2,8 @@ Category: <%= @subject.category.name %> <br>
 
 Subject: <%= @subject.name %> <br>
 
+<%= link_to "edit this Subject.", edit_subject_path %> <br>
+
 <%= link_to "Make a new Resource!", { controller: "resources", action: "new", subject_id: @subject.id} %>
 
 

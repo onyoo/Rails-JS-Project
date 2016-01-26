@@ -1,2 +1,9 @@
-<h1>Users#edit</h1>
-<p>Find me in app/views/users/edit.html.erb</p>
+<%= render partial: "application/edit_object_instructions", locals: { object: @resource } %>
+
+<div class="form">
+
+  <%= form_for @user do |f| %>
+    <%= render partial: "form", locals: {f: f} %>
+  <% end %>
+  
+</div>

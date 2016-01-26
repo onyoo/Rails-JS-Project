@@ -1,2 +1,10 @@
-<h1>Subjects#edit</h1>
-<p>Find me in app/views/subjects/edit.html.erb</p>
+<%= render partial: "application/edit_object_instructions", locals: { object: @resource } %>
+
+<div class="form">
+
+  <%= form_for @subject do |f| %>
+
+    <%= render partial: "application/form", locals: {f: f, category_id: @subject.category.id } %>
+  <% end %>
+  
+</div>
