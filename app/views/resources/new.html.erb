@@ -3,7 +3,6 @@
 <div class="form">
 
   <%= form_for @resource do |f| %>
-<% binding.pry %>
     <%= render partial: "application/form", locals: {f: f, subject_id: @resource.subject_id } %>
   <% end %>
   

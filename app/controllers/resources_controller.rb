@@ -17,6 +17,8 @@ class ResourcesController < ApplicationController
 
   def update
     @resource = Resource.find(params[:id])
+    @resource.update(resource_params)
+    redirect_to resource_path(@resource)
   end
 
   def destroy
