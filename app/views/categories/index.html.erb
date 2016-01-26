@@ -1,5 +1,5 @@
 
-<%= render "new_cat_link" %>
+<%= render partial: "application/new_link", locals: { object: @categories[0] } %>
 
 <%= @categories.each do |category| %>
   <%= render partial: "application/index", locals: { object: category } %>

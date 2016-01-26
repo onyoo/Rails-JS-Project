@@ -1,9 +1,9 @@
-<h3>Create a new category. Please make sure it has an origional name!</h3>
+<%= render partial: "application/new_object_instructions", locals: { object: @category } %>
 
 <div class="form">
 
   <%= form_for @category do |f| %>
-    <%= render partial: "form", locals: {f: f} %>
+    <%= render partial: "application/form", locals: {f: f} %>
   <% end %>
   
 </div>

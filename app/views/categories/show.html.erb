@@ -1,4 +1,6 @@
+hosdihf
 <%= @category.name %>
+<% binding.pry %>
 <%= @category.subjects.each do |subject| %>
-  <%= render partial: "subjects/index", locals: { subject: subject } %>
+  <%= render partial: "application/index", locals: { object: subject } %>
 <% end %>

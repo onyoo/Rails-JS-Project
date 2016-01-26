@@ -1,0 +1,3 @@
+<div class="make_new_category">
+  <%= link_to "Make a new #{object.class.name}", send(("new_" + object.class.name + "_path").downcase) %>
+</div>

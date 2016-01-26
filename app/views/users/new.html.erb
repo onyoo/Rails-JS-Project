@@ -1,2 +1,9 @@
-<h1>Users#new</h1>
-<p>Find me in app/views/users/new.html.erb</p>
+<%= render partial: "application/new_object_instructions", locals: { object: @user } %>
+
+<div class="form">
+
+  <%= form_for @user do |f| %>
+    <%= render partial: "form", locals: {f: f} %>
+  <% end %>
+  
+</div>

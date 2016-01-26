@@ -1,11 +1,13 @@
 Rails.application.routes.draw do
 
   resources :users
-  resources :subjects
+  resources :subjects, only: [:index, :create, :edit, :show, :update, :destroy]
   resources :categories
   resources :resources
 
   get 'home' => 'application#home'
+
+  get 'categories/:id/new' => 'subjects#new'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

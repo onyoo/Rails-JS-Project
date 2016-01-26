@@ -1,11 +1,18 @@
 class SubjectsController < ApplicationController
+
   def new
     @subject = Subject.new
+    @subject.category_id = params[:id]
   end
 
   def create
-    @subject = Subject.find_or_create_by(subject_params)
-    redirect_to subject_path(@subject)
+    binding.pry
+    if @subject = Subject.find_by(params[:subject][:name])
+      redirect_to subject_path(@subject)
+    else
+      @subject = Subject.find_or_create_by(subject_params)
+      redirect_to subject_path(@subject)
+    end
   end
 
   def edit
@@ -36,6 +43,6 @@ class SubjectsController < ApplicationController
   private
 
   def subject_params
-    params.require(:subject).permit(:name)
+    params.require(:subject).permit(:name,:category_id)
   end
 end

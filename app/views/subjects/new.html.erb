@@ -1,2 +1,10 @@
-<h1>Subjects#new</h1>
-<p>Find me in app/views/subjects/new.html.erb</p>
+<%= render partial: "application/new_object_instructions", locals: { object: @subject } %>
+
+<div class="form">
+
+  <%= form_for @subject do |f| %>
+
+    <%= render partial: "application/form", locals: {f: f, category_id: @subject.category.id } %>
+  <% end %>
+  
+</div>

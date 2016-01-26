@@ -1,0 +1,12 @@
+<%= f.label :name %>
+<%= f.text_field :name %>
+
+<% if defined? category_id %>
+  <%= f.hidden_field :category_id %>
+<% end %>
+
+<% if defined? subject_id %>
+  <%= f.hidden_field :subject_id %>
+<% end %>
+
+<%= f.submit %>
