@@ -1,9 +1,7 @@
 <h1>Welcome to LARGE! The Learning Resource Guide!</h1>
 
-<% if session[:user_id] %>
-  <%= "You are logged in!" %>
-<% else %>
-  <%= "You are NOT logged in!" %>
+<% flash.each do |name, message| %>
+  <%= content_tag :div, message, :id => "flash#{name}" %>
 <% end %>
 
 
