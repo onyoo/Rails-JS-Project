@@ -21,14 +21,6 @@ body {
   margin: 0;
 }
 
-#login {
-  text-align: right;
-  position: fixed;
-  z-index: 100;
-  top: 20px;
-  right: 15px;
-}
-
 #header {
   position: fixed;
 
@@ -72,7 +64,15 @@ body {
   vertical-align: middle;
 }
 
-a#logout, a#home {
+#login, #logout{
+  text-align: right;
+  position: fixed;
+  z-index: 100;
+  top: 30px;
+  right: 15px;
+}
+
+a#logout, a#login {
   font: bold 1em Arial;
   background-color: #FCB757;
   border-radius: 5px;
@@ -88,7 +88,7 @@ a#logout:hover {
   background-color: red;
 }
 
-a#home:hover {
+a#login:hover {
   background-color: lightgreen;
 }
 
