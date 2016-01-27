@@ -42,10 +42,10 @@ ActiveRecord::Schema.define(version: 4) do
     t.string   "last_name"
     t.string   "username"
     t.string   "email"
-    t.string   "member_status"
+    t.string   "member_status",   default: "Little Grasshopper"
     t.string   "password_digest"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",                                     null: false
+    t.datetime "updated_at",                                     null: false
   end
 
 end
