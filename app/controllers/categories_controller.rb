@@ -6,8 +6,12 @@ class CategoriesController < ApplicationController
   end
 
   def create
-    @category = Category.find_or_create_by(category_params)
-    redirect_to category_path(@category)
+    if Category.find_by(params[:name])
+      redirect_to new_category_path, notice: "That category seems to exist..."
+    else
+      @category = Category.create(resource_params)
+      redirect_to category_path(@category)
+    end
   end
 
   def edit
