@@ -3,11 +3,12 @@ Rails.application.routes.draw do
   resources :users
   resources :subjects, only: [:index, :create, :edit, :show, :update, :destroy]
   resources :categories
-  resources :resources
+  resources :resources, only: [:index, :create, :edit, :show, :update, :destroy]
 
   get 'home' => 'application#home'
 
   get 'categories/:id/new' => 'subjects#new', as: "new_subject"
+  get 'categories/:category_id/:subject_id/new' => 'resources#new', as: "new_resource"
 
   get 'login' => 'sessions#new'
   post 'login' => 'sessions#create'

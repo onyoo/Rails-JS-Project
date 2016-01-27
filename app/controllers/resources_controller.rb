@@ -7,7 +7,7 @@ class ResourcesController < ApplicationController
   end
 
   def create
-    if Resource.find_by(params[:name])
+    if Resource.find_by(name: (params[:resource][:name]))
       redirect_to new_resource_path, notice: "That resource seems to exist..."
     else
       @resource = Resource.create(resource_params)
@@ -38,6 +38,6 @@ class ResourcesController < ApplicationController
   private
 
   def resource_params
-    params.require(:resource).permit(:name,:url,:description,:subject_id)
+    params.require(:resource).permit(:name,:url,:description,:subject_id, :user_id)
   end
 end

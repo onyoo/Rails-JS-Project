@@ -1,5 +1,7 @@
 <%= render partial: "application/new_object_instructions", locals: { object: @subject } %>
 
+<%= render partial: "flashnotice", locals: { flash: flash } %>
+
 <div class="form">
 
   <%= form_for @subject do |f| %>

@@ -2,7 +2,7 @@
 
 <%= link_to "Edit this Subject.", edit_subject_path %> <br>
 
-<%= link_to "Make a new Resource!", { controller: "resources", action: "new", subject_id: @subject.id} %>
+<%= link_to "Make a new Resource!", { controller: "resources", action: "new", category_id: @subject.category.id, subject_id: @subject.id} %>
 
 
 

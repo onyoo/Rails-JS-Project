@@ -9,7 +9,7 @@ class CategoriesController < ApplicationController
     if Category.find_by(params[:name])
       redirect_to new_category_path, notice: "That category seems to exist..."
     else
-      @category = Category.create(resource_params)
+      @category = Category.create(category_params)
       redirect_to category_path(@category)
     end
   end

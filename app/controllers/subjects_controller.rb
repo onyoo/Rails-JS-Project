@@ -7,8 +7,13 @@ class SubjectsController < ApplicationController
   end
 
   def create
-    @subject = Subject.find_or_create_by(subject_params)
-    redirect_to subject_path(@subject)
+    binding.pry
+    if Subject.find_by(name: (params[:subject][:name]))
+      redirect_to new_subject_path, notice: "That subject seems to exist..."
+    else
+      @subject = Subject.create(subject_params)
+      redirect_to subject_path(@subject)
+    end
   end
 
   def edit
