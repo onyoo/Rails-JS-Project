@@ -2,8 +2,7 @@ class SubjectsController < ApplicationController
   before_action :require_user, only: [:index, :show]
 
   def new
-    @subject = Subject.new
-    @subject.category_id = params[:id]
+    new_subject_with_cat
   end
 
   def create
@@ -11,6 +10,9 @@ class SubjectsController < ApplicationController
       redirect_to new_subject_path, notice: "That subject seems to exist..."
     else
       @subject = Subject.create(subject_params)
+      if category_id_params
+        @subject.update(category_id: category_id_params, user_id: current_user.id)
+      end
       redirect_to subject_path(@subject)
     end
   end
@@ -36,6 +38,7 @@ class SubjectsController < ApplicationController
   end
 
   def index
+    new_subject_with_cat
     @subjects = Subject.all
   end
 
@@ -45,7 +48,16 @@ class SubjectsController < ApplicationController
 
   private
 
+  def new_subject_with_cat
+    @subject = Subject.new
+    @subject.category_id = params[:id]
+  end
+
   def subject_params
     params.require(:subject).permit(:name,:category_id,:user_id)
+  end
+
+  def category_id_params
+    params[:subject][:category_id].to_i
   end
 end

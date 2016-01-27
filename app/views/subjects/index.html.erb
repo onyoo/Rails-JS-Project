@@ -1,4 +1,18 @@
-You must be in a category to create a new subject (for now)
+An existing category must be selected to make a new subject from this page:
+
+<%= form_for @subject do |f| %>
+
+  <%= f.collection_select :category_id, Category.all, :id, :name %>
+
+    <datalist>
+      <%= Category.all.each do |cat| %>
+        <option name="<%=cat.name%>" value="<%=cat.name%>"></option>
+      <% end %>
+    </datalist>
+
+<%= render partial: "application/form", locals: { f: f } %>
+
+<% end %>
 <ul>
   <%= @subjects.each do |subject| %>
     <li><%= render partial: "application/index", locals: { object: subject } %></li>
