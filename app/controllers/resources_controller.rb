@@ -7,8 +7,8 @@ class ResourcesController < ApplicationController
   end
 
   def create
-    if Resource.find_by(name: (params[:resource][:name]))
-      redirect_to new_resource_path, notice: "That resource seems to exist..."
+    if @resource = Resource.find_by(name: (params[:resource][:name]))
+      redirect_to new_resource_path(new_resource_hash), notice: "That resource seems to exist..."
     else
       @resource = Resource.create(resource_params)
       redirect_to resource_path(@resource)
@@ -56,5 +56,14 @@ class ResourcesController < ApplicationController
 
   def resource_rating_params
     params.require(:resource).permit(:usability_rating,:addictive_rating)
+  end
+
+  def new_resource_hash
+        {
+        controller: "resources",
+        action: "new",
+        category_id: @resource.category.id,
+        subject_id: @resource.subject.id
+      }
   end
 end
