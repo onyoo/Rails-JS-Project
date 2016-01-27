@@ -1,7 +1,7 @@
 class Category < ActiveRecord::Base
-  has_many :subjects
+  has_many :subjects, dependent: :destroy
   has_many :users, through: :subjects
-  has_many :resources, through: :subjects
+  has_many :resources, through: :subjects, dependent: :destroy
 
   validates_presence_of :name
   validates_uniqueness_of :name

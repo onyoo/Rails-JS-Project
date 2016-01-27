@@ -6,5 +6,5 @@ class Resource < ActiveRecord::Base
 
   validates_uniqueness_of :name, :url
 
-  validates_presence_of :name, :url
+  validates_presence_of :name, :url, :description, :user_id
 end
