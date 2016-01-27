@@ -19,8 +19,11 @@
   <%= f.hidden_field :user_id, value: current_user.id %>
 <% end %>
 
-<%= f.label :_destroy, "Delete: " %>
-<%= f.check_box :_destroy %>
+<% if params[:action] == "edit" %>
 
+  <%= f.label :_destroy, "Delete: " %>
+  <%= f.check_box :_destroy %>
+
+<% end %>
 
 <%= f.submit %>
