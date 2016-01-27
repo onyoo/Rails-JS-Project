@@ -39,7 +39,7 @@ class UsersController < ApplicationController
     unless current_user
       redirect_to(:back)
     end
-    @user = current_user
+    @user = User.find(params[:id])
   end
 
   private
