@@ -98,13 +98,13 @@ body {
   right: 35px;
 }
 
-#signup {
+#signup, #show_user {
   position: fixed;
   top: 17px;
   right: 105px;
 }
 
-a#logout, a#login, a#signup {
+a#logout, a#login, a#signup, a#show_user {
   font: bold 1em Arial;
   background-color: #FCB757;
   border-radius: 5px;
@@ -120,7 +120,7 @@ a#logout:hover {
   background-color: red;
 }
 
-a#login:hover, a#signup {
+a#login:hover, a#signup, a#show_user {
   background-color: lightgreen;
 }
 

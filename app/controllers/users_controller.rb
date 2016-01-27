@@ -14,7 +14,7 @@ class UsersController < ApplicationController
   end
 
   def edit
-    
+    binding.pry
   end
 
   def update
@@ -27,6 +27,9 @@ class UsersController < ApplicationController
   end
 
   def show
+    unless current_user == User.find(params[:id])
+      redirect_to(:back)
+    end
   end
 
   private
