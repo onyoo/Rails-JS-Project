@@ -1,17 +1,25 @@
-<% if defined? resource %>
+<% if !defined? object.category %>
 
-  <%= link_to resource.category.name, category_path(resource.category) %> > <%= link_to resource.subject.name, subject_path(resource.subject) %> > <%= resource.name %> <br><br>
+  <%= object.name %>  <!-- Category name -->
 
-<% end %>
+<% else %>
 
-<% if defined? subject %>
+  <%= link_to object.category.name, category_path(object.category) %>
 
-<%= link_to subject.category.name, category_path(subject.category) %> > <%= subject.name %> <br><br>
+   > <!-- do not edit! Relation marker!! -->
 
-<% end %>
+  <% if !defined? object.subject %>
+  
+    <%= object.name %>  <!-- Subject name -->
 
-<% if defined? category %>
+  <% else %>
 
-  <%= category.name %>
+    <%= link_to object.subject.name, subject_path(object.subject) %>
+
+     > <!-- do not edit! Relation marker!! -->
+
+    <%= object.name %>  <!-- Resource name -->
+
+  <% end %>
 
 <% end %>
