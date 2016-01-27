@@ -1,9 +1,15 @@
-<%= render partial: "application/edit_object_instructions", locals: { object: @resource } %>
+
+Please note that you can't edit your password here at this time. We're working on it :)
 
 <div class="form">
 
   <%= form_for @user do |f| %>
     <%= render partial: "form", locals: {f: f} %>
+
+    <%= f.label :_destroy %>
+    <%= f.check_box :_destroy %>
+
+    <%= f.submit "Submit Edits", class: "btn-submit" %>
   <% end %>
   
 </div>

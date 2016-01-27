@@ -1,2 +1,6 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<%= link_to "Edit information", edit_user_path %> <br><br>
+
+Name: <%= @user.first_name %> <%= @user.last_name %> <br>
+Username: <%= @user.username %> <br>
+Email: <%= @user.email %> <br>
+Status: <%= @user.member_status %> <br>

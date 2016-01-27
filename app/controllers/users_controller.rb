@@ -14,10 +14,19 @@ class UsersController < ApplicationController
   end
 
   def edit
-    binding.pry
+    @user = User.find(params[:id])
   end
 
   def update
+    if params[:user][:_destroy] == "1"
+      destroy
+      redirect_to home_path
+    else
+      binding.pry
+      @user = User.find(params[:id])
+      @user.update(user_edit_params)
+      redirect_to user_path(@user)
+    end
   end
 
   def destroy
@@ -27,14 +36,19 @@ class UsersController < ApplicationController
   end
 
   def show
-    unless current_user == User.find(params[:id])
+    unless current_user
       redirect_to(:back)
     end
+    @user = current_user
   end
 
   private
 
   def user_params
     params.require(:user).permit(:first_name,:last_name,:email,:password,:username)
+  end
+
+  def user_edit_params
+    params.require(:user).permit(:first_name,:last_name,:email,:username)
   end
 end
