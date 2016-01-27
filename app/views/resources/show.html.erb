@@ -2,7 +2,18 @@
 
 <br><br>
 
-<%= link_to "Edit or delete this resource.", edit_resource_path %> <br>
+<%= link_to "Edit or delete this resource.", edit_resource_path %> <br><br>
 
 
 <%= render partial: "index", locals: { resource: @resource } %>
+
+
+<%= form_for @resource do |f| %>
+  <%= f.label :usability_rating, "Usability:" %>
+  <%= f.number_field :usability_rating %>
+
+  <%= f.label :addictive_rating, "Addictiveness" %>
+  <%= f.number_field :addictive_rating %>
+
+  <%= f.submit %>
+<% end %>

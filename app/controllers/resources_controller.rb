@@ -20,12 +20,18 @@ class ResourcesController < ApplicationController
   end
 
   def update
-    if params[:resource][:_destroy] == "1"
-      destroy
-      redirect_to subject_path(@subject)
-    else
+    if params[:resource][:name]
+      if params[:resource][:_destroy] == "1"
+        destroy
+        redirect_to subject_path(@subject)
+      else
+        @resource = Resource.find(params[:id])
+        @resource.update(resource_params)
+        redirect_to resource_path(@resource)
+      end
+    elsif params[:resource][:usability_rating]
       @resource = Resource.find(params[:id])
-      @resource.update(resource_params)
+      @resource.update(resource_rating_params)
       redirect_to resource_path(@resource)
     end
   end
@@ -45,6 +51,10 @@ class ResourcesController < ApplicationController
   private
 
   def resource_params
-    params.require(:resource).permit(:name,:url,:description,:subject_id, :user_id)
+    params.require(:resource).permit(:name,:url,:description,:subject_id, :user_id, :price_per_month)
+  end
+
+  def resource_rating_params
+    params.require(:resource).permit(:usability_rating,:addictive_rating)
   end
 end
