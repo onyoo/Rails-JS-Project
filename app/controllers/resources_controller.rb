@@ -7,8 +7,12 @@ class ResourcesController < ApplicationController
   end
 
   def create
-    @resource = Resource.find_or_create_by(resource_params)
-    redirect_to resource_path(@resource)
+    if Resource.find_by(params[:name])
+      redirect_to new_resource_path, notice: "That resource seems to exist..."
+    else
+      @resource = Resource.create(resource_params)
+      redirect_to resource_path(@resource)
+    end
   end
 
   def edit

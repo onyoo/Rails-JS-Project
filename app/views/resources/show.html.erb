@@ -1,8 +1,6 @@
-Category: <%= link_to @resource.category.name, category_path(@resource.category) %> <br>
+<%= link_to @resource.category.name, category_path(@resource.category) %> > <%= link_to @resource.subject.name, subject_path(@resource.subject) %> > <%= @resource.name %> <br><br>
 
-Subject: <%= link_to @resource.subject.name, subject_path(@resource.subject) %> <br>
-
-<%= link_to "Edit this resource.", edit_resource_path %> <br>
+<%= link_to "Edit this resource.", edit_resource_path %> <br><br>
 
 
 <%= render partial: "index", locals: { resource: @resource } %>

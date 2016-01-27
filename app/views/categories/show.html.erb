@@ -1,7 +1,10 @@
-Category: <%= @category.name %>
+<%= @category.name %>
 
-<%= link_to "Make a new Subject!", new_subject_path %>
+<br><br>
 
+<%= link_to "Make a new subject!", new_subject_path %>
+
+<%= link_to "Edit this category.", edit_category_path %> <br><br>
 
 <ul>
   <%= @category.subjects.each do |subject| %>

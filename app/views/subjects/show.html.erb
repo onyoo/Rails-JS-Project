@@ -1,14 +1,14 @@
-Category: <%= @subject.category.name %> <br>
+<%= link_to @subject.category.name, category_path(@subject.category) %> > <%= @subject.name %> <br><br>
 
-Subject: <%= @subject.name %> <br>
-
-<%= link_to "edit this Subject.", edit_subject_path %> <br>
+<%= link_to "Edit this Subject.", edit_subject_path %> <br>
 
 <%= link_to "Make a new Resource!", { controller: "resources", action: "new", subject_id: @subject.id} %>
 
 
+
 <ul>
   <%= @subject.resources.each do |resource| %>
+
     <li><%= render partial: "application/index", locals: { object: resource } %></li>
   <% end %>
 </ul>
