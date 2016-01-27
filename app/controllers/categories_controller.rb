@@ -6,7 +6,7 @@ class CategoriesController < ApplicationController
   end
 
   def create
-    if Category.find_by(params[:name])
+    if Category.find_by(name: params[:name])
       redirect_to new_category_path, notice: "That category seems to exist..."
     else
       @category = Category.create(category_params)
@@ -19,15 +19,17 @@ class CategoriesController < ApplicationController
   end
 
   def update
-    @category = Category.find(params[:id])
-
-    @category.update(category_params)
-
-    redirect_to category_path(@category)
+    if params[:category][:_destroy] == "1"
+      destroy
+      redirect_to categories_path
+    else
+      @category = Category.find(params[:id])
+      @category.update(category_params)
+      redirect_to category_path(@category)
+    end
   end
 
   def destroy
-    binding.pry
     Category.destroy(params[:id])
   end
 
