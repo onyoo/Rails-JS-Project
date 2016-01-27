@@ -1,5 +1,7 @@
 <%= render partial: 'application/navigation', locals: { object: @subject } %>
 
+<br><br>
+
 <%= link_to "Edit this Subject.", edit_subject_path %> <br>
 
 <%= link_to "Make a new Resource!", { controller: "resources", action: "new", category_id: @subject.category.id, subject_id: @subject.id} %>

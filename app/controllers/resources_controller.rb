@@ -20,12 +20,19 @@ class ResourcesController < ApplicationController
   end
 
   def update
-    @resource = Resource.find(params[:id])
-    @resource.update(resource_params)
-    redirect_to resource_path(@resource)
+    if params[:resource][:_destroy] == "1"
+      destroy
+      redirect_to subject_path(@subject)
+    else
+      @resource = Resource.find(params[:id])
+      @resource.update(resource_params)
+      redirect_to resource_path(@resource)
+    end
   end
 
   def destroy
+    @subject = Resource.find(params[:id]).subject
+    Resource.delete(params[:id])
   end
 
   def index

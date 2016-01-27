@@ -19,6 +19,8 @@
   <%= f.hidden_field :user_id, value: current_user.id %>
 <% end %>
 
+<%= f.label :_destroy %>
+<%= f.check_box :_destroy %>
 
 
 <%= f.submit %>
