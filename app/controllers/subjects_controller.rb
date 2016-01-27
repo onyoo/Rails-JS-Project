@@ -7,7 +7,6 @@ class SubjectsController < ApplicationController
   end
 
   def create
-    binding.pry
     if Subject.find_by(name: (params[:subject][:name]))
       redirect_to new_subject_path, notice: "That subject seems to exist..."
     else
@@ -21,15 +20,18 @@ class SubjectsController < ApplicationController
   end
 
   def update
-    @subject = Subject.find(params[:id])
-
-    @subject.update(subject_params)
-
-    redirect_to subject_path(@subject)
+    if params[:subject][:_destroy] == "1"
+      destroy
+      redirect_to category_path(@category)
+    else
+      @subject = Subject.find(params[:id])
+      @subject.update(subject_params)
+      redirect_to subject_path(@subject)
+    end
   end
 
   def destroy
-    binding.pry
+    @category = Subject.find(params[:id]).category
     Subject.destroy(params[:id])
   end
 
