@@ -22,7 +22,6 @@ class UsersController < ApplicationController
       destroy
       redirect_to home_path
     else
-      binding.pry
       @user = User.find(params[:id])
       @user.update(user_edit_params)
       redirect_to user_path(@user)
