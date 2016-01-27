@@ -3,6 +3,8 @@
 
 <% if defined? category_id %>
   <%= f.hidden_field :category_id %>
+
+  <%= f.hidden_field :user_id, value: current_user.id %>
 <% end %>
 
 <% if defined? subject_id %>
@@ -13,8 +15,10 @@
   <%= f.text_field :description %>
 
   <%= f.hidden_field :subject_id %>
+
+  <%= f.hidden_field :user_id, value: current_user.id %>
 <% end %>
 
-<%= f.hidden_field :user_id, value: current_user.id %>
+
 
 <%= f.submit %>

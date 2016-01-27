@@ -44,6 +44,6 @@ class SubjectsController < ApplicationController
   private
 
   def subject_params
-    params.require(:subject).permit(:name,:category_id)
+    params.require(:subject).permit(:name,:category_id,:user_id)
   end
 end
