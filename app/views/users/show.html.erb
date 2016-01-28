@@ -1,3 +1,6 @@
+
+<title><% @user.username + "'s Profile" %></title>
+
 <% if current_user.id == @user.id %>
   <%= link_to "Edit or delete information", edit_user_path %> <br><br>
 <% end %>

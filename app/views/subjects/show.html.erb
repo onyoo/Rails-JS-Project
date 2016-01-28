@@ -1,8 +1,11 @@
+
+<title><% title(@subject.name.capitalize + "'s Details") %></title>
+
 <%= render partial: 'application/navigation', locals: { object: @subject } %>
 
 <br><br>
 
-<%= link_to "Edit or delete this Subject.", edit_subject_path %> <br>
+<%= link_to "Edit or delete this subject.", edit_subject_path %> <br>
 
 <%= link_to "Make a new Resource!", new_resource_helper(@subject) %>
 

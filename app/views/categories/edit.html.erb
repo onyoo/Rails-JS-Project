@@ -1,4 +1,7 @@
-<%= render partial: "application/edit_object_instructions", locals: { object: @resource } %>
+
+<title><% title("Edit " + @category.name.capitalize) %></title>
+
+<%= render partial: "application/edit_object_instructions", locals: { object: @category } %>
 
 <div class="form">
 

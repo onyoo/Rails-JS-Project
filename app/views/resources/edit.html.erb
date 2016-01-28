@@ -1,3 +1,6 @@
+
+<title><%= title("Edit " + @resource.name.capitalize) %></title>
+
 <%= render partial: "application/edit_object_instructions", locals: { object: @resource } %>
 
 <%= form_for @resource do |f| %>

@@ -1,6 +1,10 @@
 <% if !defined? object.category %>
 
-  <%= object.name %>  <!-- Category name -->
+  <%= link_to "Categories", categories_path %>  
+
+   > <!-- do not edit! Relation marker!! -->
+
+  <%= object.name %><!-- Category name -->
 
 <% else %>
 

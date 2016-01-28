@@ -1,4 +1,7 @@
-<%= render partial: "application/edit_object_instructions", locals: { object: @resource } %>
+
+<title><%= title("Edit " + @subject.name) %></title>
+
+<%= render partial: "application/edit_object_instructions", locals: { object: @subject } %>
 
 <div class="form">
 
