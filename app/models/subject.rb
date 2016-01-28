@@ -3,10 +3,12 @@ class Subject < ActiveRecord::Base
   has_many :resources, dependent: :destroy, inverse_of: :subject
   belongs_to :category
 
-  # validates_presence_of :name, :category_id, :user_id
-  # validates_uniqueness_of :name
+  validates_presence_of :name, :category#, :user_id -- tree builder skips user_id assignment even though in nested form. Perhaps because Resource takes one as well?
+  validates_uniqueness_of :name
 
   accepts_nested_attributes_for :resources
 
-
+  def user_id=(user_id)
+    binding.pry
+  end
 end
