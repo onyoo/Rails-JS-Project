@@ -2,7 +2,7 @@
 <%= render partial: "application/new_link", locals: { object: @categories[0] } %>
 
 <ul>
-  <%= @categories.each do |category| %>
+  <% @categories.each do |category| %>
     <li><%= render partial: "application/index", locals: { object: category } %></li>
   <% end %>
 </ul>

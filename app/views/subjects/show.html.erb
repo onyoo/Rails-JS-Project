@@ -8,7 +8,7 @@
 
 
 <ul>
-  <%= @subject.resources.each do |resource| %>
+  <% @subject.resources.each do |resource| %>
 
     <li><%= render partial: "application/index", locals: { object: resource } %></li>
   <% end %>

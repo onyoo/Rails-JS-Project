@@ -51,7 +51,6 @@ class CategoriesController < ApplicationController
 
   def grow_tree
     @category = Category.create(tree_params)
-    binding.pry
     redirect_to resource_path(Resource.last)
   end
 

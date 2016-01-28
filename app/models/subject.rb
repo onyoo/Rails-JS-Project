@@ -8,7 +8,4 @@ class Subject < ActiveRecord::Base
 
   accepts_nested_attributes_for :resources
 
-  def user_id=(user_id)
-    binding.pry
-  end
 end

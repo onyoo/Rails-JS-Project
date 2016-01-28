@@ -7,7 +7,7 @@
 <%= link_to "Edit or delete this category.", edit_category_path %> <br><br>
 
 <ul>
-  <%= @category.subjects.each do |subject| %>
+  <% @category.subjects.each do |subject| %>
     <li><%= render partial: "application/index", locals: { object: subject } %></li>
   <% end %>
 </ul>
