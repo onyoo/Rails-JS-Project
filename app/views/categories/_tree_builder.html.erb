@@ -1,0 +1,35 @@
+<%= label_tag(:name, "New Category By Name") %>
+<%= f.text_field :name %>
+or select existing
+
+
+
+  <%= f.fields_for :subjects do |subject|%>
+    <div id="subject_tree">
+      <%= label_tag(:name, "New Subject By Name") %>
+      <%= subject.text_field :name %>
+      
+      <%= subject.hidden_field :user_id, value: current_user.id %>
+      or select existing
+
+      </div> <!-- subject_tree -->
+      <%= subject.fields_for :resources do |resource| %>
+        <div id="resource_tree">
+          <%= resource.label :name %>
+          <%= resource.text_field :name %>
+          <br>
+          <%= resource.label :url %>
+          <%= resource.text_field :url %>
+          <br>
+          <%= resource.label :description %>
+          <%= resource.text_area :description %>
+          <br>
+          <%= resource.label :price_per_month %>
+          <%= resource.number_field :price_per_month %>
+
+          <%= resource.hidden_field :user_id, value: current_user.id %>
+        </div> <!-- resource_tree -->
+      <% end %> <!-- fields_for :resource -->  <br>
+
+<% end %> <!-- fields_for :subject -->
+<%= f.submit %>

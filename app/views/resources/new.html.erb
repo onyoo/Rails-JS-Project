@@ -1,12 +1,10 @@
 <%= render partial: "application/new_object_instructions", locals: { object: @resource } %>
 
-
 <%= render partial: "flashnotice", locals: { flash: flash } %>
-
 <div class="form">
-
-  <%= form_for @resource do |f| %>
-    <%= render partial: "application/form", locals: {f: f, subject_id: @resource.subject_id } %>
-  <% end %>
   
+    <%= form_for @resource do |f| %>
+      <%= render partial: "application/form", locals: {f: f, subject_id: @resource.subject_id } %>
+    <% end %>
+
 </div>

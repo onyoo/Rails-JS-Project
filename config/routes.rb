@@ -14,6 +14,9 @@ Rails.application.routes.draw do
   post 'login' => 'sessions#create'
   get 'logout' => 'sessions#destroy'
 
+  get 'tree_builder/new' => 'categories#plant_tree', as: "tree"
+  post 'tree_builder/new' => 'categories#grow_tree', as: "grow"
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

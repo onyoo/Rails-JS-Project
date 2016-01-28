@@ -1,11 +1,19 @@
 <%= render partial: "application/new_object_instructions", locals: { object: @category } %>
+Use this great power with care!! <br><br>
 
 <%= render partial: "flashnotice", locals: { flash: flash } %>
 
-<div class="form">
 
-  <%= form_for @category do |f| %>
-    <%= render partial: "application/form", locals: {f: f} %>
-  <% end %>
+<div class="form">
+  <% if !request.referrer.end_with? home_path %>
+    <%= form_for @category do |f| %>
+      <%= render partial: "application/form", locals: {f: f} %>
+    <% end %>
+  <% else %>
   
+  For now, we have a fixed number of categories, subjects, and reources you can create, but in the future you will be able to choose how many!
+    <%= form_for @category, url: "/tree_builder/new", method: "post" do |f| %>
+      <%= render partial: "tree_builder", locals: {f: f} %>
+    <% end %>
+  <% end %>
 </div>

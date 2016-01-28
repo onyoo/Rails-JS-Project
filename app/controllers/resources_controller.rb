@@ -7,6 +7,7 @@ class ResourcesController < ApplicationController
   end
 
   def create
+    binding.pry
     if @resource = Resource.find_by(name: (params[:resource][:name]))
       redirect_to new_resource_path(new_resource_hash), notice: "That resource seems to exist..."
     else
@@ -47,6 +48,7 @@ class ResourcesController < ApplicationController
   def show
     @resource = Resource.find(params[:id])
   end
+
 
   private
 

@@ -41,10 +41,28 @@ class CategoriesController < ApplicationController
     @category = Category.find(params[:id])
   end
 
+
+  def plant_tree
+    @category = Category.new
+    subject = @category.subjects.build
+    subject.resources.build
+    render 'new'
+  end
+
+  def grow_tree
+    @category = Category.create(tree_params)
+    binding.pry
+    redirect_to resource_path(Resource.last)
+  end
+
   private
 
   def category_params
     params.require(:category).permit(:name)
+  end
+
+  def tree_params
+    params.require(:category).permit(:name, :subjects_attributes => [:name, :resources_attributes => [:name,:url,:description,:subject_id, :user_id, :price_per_month]])
   end
 
 end
