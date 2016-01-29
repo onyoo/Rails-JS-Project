@@ -11,10 +11,8 @@ class Category < ActiveRecord::Base
   def self.create_tree(tree_params)
     @resource = Resource.create(tree_params[:subjects_attributes]["0"][:resources_attributes]["0"])
     @subject = Subject.find(tree_params[:subjects_attributes]["0"][:id])
-    @category = Category.find(tree_params[:id])
-    @category.subjects << (@subject.resources << @resource )
-    binding.pry
-    b=2
+    @subject.resources << @resource
+    @subject.save
   end
 
   def self.create_with_new_subject(tree_params)
