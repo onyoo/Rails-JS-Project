@@ -46,12 +46,14 @@ class CategoriesController < ApplicationController
     @category = Category.new
     subject = @category.subjects.build
     subject.resources.build
+    @categories = Category.all
+    @subjects = Subject.all
     render 'new'
   end
 
   def grow_tree
-    @category = Category.create(tree_params)
-    redirect_to resource_path(Resource.last)
+    tree_params
+    redirect_to resource_path(@resource = Resource.last)
   end
 
   private
@@ -61,7 +63,13 @@ class CategoriesController < ApplicationController
   end
 
   def tree_params
-    params.require(:category).permit(:name, :subjects_attributes => [:name, :resources_attributes => [:name,:url,:description,:subject_id, :user_id, :price_per_month]])
+    if (params[:category][:id] != "") && (params[:category][:subjects_attributes]["0"][:id] == "")
+      Category.create_with_new_subject(params.require(:category).permit(:id, :subjects_attributes => [:name, :user_id, :resources_attributes => [:name,:url,:description,:subject_id, :user_id, :price_per_month]]))
+    elsif (params[:category][:id] != "") && (params[:category][:subjects_attributes]["0"][:id] != "")
+      Category.create_tree(params.require(:category).permit(:id, :subjects_attributes => [:user_id, :id, :resources_attributes => [:name,:url,:description,:subject_id, :user_id, :price_per_month]]))
+    else
+      Category.create_with_new_category_and_subject(params.require(:category).permit(:name, :subjects_attributes => [:name, :user_id, :resources_attributes => [:name,:url,:description,:subject_id, :user_id, :price_per_month]]))
+    end
   end
 
 end
