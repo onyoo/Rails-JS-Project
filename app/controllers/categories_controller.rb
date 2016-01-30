@@ -34,7 +34,7 @@ class CategoriesController < ApplicationController
   end
 
   def index
-    @categories = Category.all
+    @categories = Category.order("name ASC")
   end
 
   def show
@@ -52,8 +52,13 @@ class CategoriesController < ApplicationController
   end
 
   def grow_tree
-    tree_params
-    redirect_to resource_path(@resource = Resource.last)
+    Category.create_correct_associations(params)
+    binding.pry
+    if errors.messages.empty?
+      redirect_to resource_path(@resource = Resource.last)
+    else
+      render 'new', notice: "You F-ed-up"
+    end
   end
 
   private
@@ -62,14 +67,16 @@ class CategoriesController < ApplicationController
     params.require(:category).permit(:name)
   end
 
-  def tree_params
-    if (params[:category][:id] != "") && (params[:category][:subjects_attributes]["0"][:id] == "")
-      Category.create_with_new_subject(params.require(:category).permit(:id, :subjects_attributes => [:name, :user_id, :resources_attributes => [:name,:url,:description,:subject_id, :user_id, :price_per_month]]))
-    elsif (params[:category][:id] != "") && (params[:category][:subjects_attributes]["0"][:id] != "")
-      Category.create_tree(params.require(:category).permit(:id, :subjects_attributes => [:user_id, :id, :resources_attributes => [:name,:url,:description,:subject_id, :user_id, :price_per_month]]))
-    else
-      Category.create_with_new_category_and_subject(params.require(:category).permit(:name, :subjects_attributes => [:name, :user_id, :resources_attributes => [:name,:url,:description,:subject_id, :user_id, :price_per_month]]))
-    end
+  def tree_params_old_cat
+    params.require(:category).permit(:id, :subjects_attributes => [:name, :user_id, :resources_attributes => [:name,:url,:description,:subject_id, :user_id, :price_per_month]])
+  end
+    
+  def tree_params_old_cat_old_sub
+    params.require(:category).permit(:id, :subjects_attributes => [:user_id, :id, :resources_attributes => [:name,:url,:description,:subject_id, :user_id, :price_per_month]])
+  end
+
+  def tree_params_new_cat_and_new_sub
+    params.require(:category).permit(:name, :subjects_attributes => [:name, :user_id, :resources_attributes => [:name,:url,:description,:subject_id, :user_id, :price_per_month]])
   end
 
 end

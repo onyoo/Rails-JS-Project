@@ -17,7 +17,7 @@ An existing category must be selected to make a new subject from this page:
 
 <% end %>
 <ul>
-  <%= @subjects.each do |subject| %>
-    <li><%= render partial: "application/index", locals: { object: subject } %></li>
+  <% @subjects.each do |subject| %>
+    <li><%= subject.category.name %> > <%= render partial: "application/index", locals: { object: subject } %></li>
   <% end %>
 </ul>

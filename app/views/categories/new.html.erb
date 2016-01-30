@@ -8,7 +8,8 @@ Use this great power with care!! <br><br>
 
 
 <div class="form">
-  <% if !request.referrer.end_with? home_path %>
+
+  <% if (!request.referrer.end_with? home_path) && (!request.env["REQUEST_URI"].end_with?("tree_builder/new")) %>
     <%= form_for @category do |f| %>
       <%= render partial: "application/form", locals: {f: f} %>
     <% end %>

@@ -39,7 +39,7 @@ class SubjectsController < ApplicationController
 
   def index
     new_subject_with_cat
-    @subjects = Subject.all
+    @subjects = Subject.order("name ASC")
   end
 
   def show
