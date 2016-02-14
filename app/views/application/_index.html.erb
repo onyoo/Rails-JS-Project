@@ -1,4 +1,5 @@
 <% unless defined? object.first_name %>
+
   <%= link_to object.name, send(((object.class.name + "_path").downcase), object ) %>
 <% else %>
   <%= link_to object.username, send(((object.class.name + "_path").downcase), object ) %>

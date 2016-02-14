@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
 
   resources :users
-  resources :subjects, only: [:index, :create, :edit, :show, :update, :destroy]
   resources :categories
+  resources :subjects, only: [:index, :create, :edit, :show, :update, :destroy]
   resources :resources, only: [:index, :create, :edit, :show, :update, :destroy]
 
   get 'home' => 'application#home'
@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   get 'tree_builder/new' => 'categories#plant_tree', as: "tree"
   post 'tree_builder/new' => 'categories#grow_tree', as: "grow"
 
+  get '/auth/facebook', as: 'facebook_login'
   get 'auth/:provider/callback', to: 'sessions#create'
   get 'auth/failure', to: redirect('home')
   # get 'signout', to: 'sessions#destroy', as: 'logout'

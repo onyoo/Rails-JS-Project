@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
   has_many :categories, through: :subjects
   has_many :resources
 
-  validates_presence_of :first_name, :last_name, :username
+  validates_presence_of :first_name, :last_name, :username, :email
 
   validates_uniqueness_of :username
 

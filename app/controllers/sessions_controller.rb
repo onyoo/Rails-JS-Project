@@ -13,16 +13,16 @@ class SessionsController < ApplicationController
       end
       @user.save unless @user.id
       session[:user_id] = @user.id
+      redirect_to home_path, :notice => "Logged in!"
     else
       @user = User.find_by_email(params[:session][:email])
       if @user && @user.authenticate(params[:session][:password])
         session[:user_id] = @user.id
+        redirect_to home_path, :notice => "Logged in!"
       else
-        bidning.pry
         redirect_to login_path, notice: "Invalid email or password."
       end
     end 
-    redirect_to home_path, :notice => "Logged in!"
   end
 
   def destroy 

@@ -8,6 +8,8 @@ class SubjectsController < ApplicationController
   def create
     if Subject.find_by(name: (params[:subject][:name]))
       redirect_to new_subject_path, notice: "That subject seems to exist..."
+    elsif params[:subject][:name] == ''
+      redirect_to new_subject_path, notice: "Must provide a name."
     else
       @subject = Subject.create(subject_params)
       if category_id_params
@@ -45,6 +47,7 @@ class SubjectsController < ApplicationController
   def show
     @subject = Subject.find(params[:id])
   end
+
 
   private
 

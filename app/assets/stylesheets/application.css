@@ -90,7 +90,7 @@ body {
   border-left: 1px solid #CCCCCC;
 }
 
-#login, #logout{
+#login, #logout, #fb_login {
   text-align: right;
   position: fixed;
   z-index: 100;
@@ -104,7 +104,13 @@ body {
   right: 105px;
 }
 
-a#logout, a#login, a#signup, a#show_user {
+#fb_login {
+  position: fixed;
+  top: 47px;
+  right: 35px;
+}
+
+a#logout, a#login, a#signup, a#show_user, a#fb_login {
   font: bold 1em Arial;
   background-color: #FCB757;
   border-radius: 5px;
@@ -120,7 +126,7 @@ a#logout:hover {
   background-color: red;
 }
 
-a#login:hover, a#signup, a#show_user {
+a#login:hover, a#signup, a#show_user, a#fb_login:hover {
   background-color: lightgreen;
 }
 
