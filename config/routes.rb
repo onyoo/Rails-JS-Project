@@ -17,6 +17,10 @@ Rails.application.routes.draw do
   get 'tree_builder/new' => 'categories#plant_tree', as: "tree"
   post 'tree_builder/new' => 'categories#grow_tree', as: "grow"
 
+  get 'auth/:provider/callback', to: 'sessions#create'
+  get 'auth/failure', to: redirect('home')
+  # get 'signout', to: 'sessions#destroy', as: 'logout'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
