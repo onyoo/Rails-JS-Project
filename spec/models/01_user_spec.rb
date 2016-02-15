@@ -72,7 +72,7 @@ RSpec.describe User, type: :model do
       try_2 = User.new(first_name: "Scabbers", last_name: "McScabbers", email: "McScabbers@gmail.com", username: "Scabbers", password: nil)
 
       expect(try_1).to have(1).errors_on(:password)
-      expect(try_2).to have(1).errors_on(:password)
+      expect(try_2).to have(2).errors_on(:password)
 
     end
 

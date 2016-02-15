@@ -23,15 +23,12 @@ class UsersController < ApplicationController
       redirect_to home_path
     else
       @user = User.find(params[:id])
-      if @user.update(user_edit_params)
-        redirect_to user_path(@user)
+      if @user.update(user_params)
+        redirect_to user_path(@user), message: "Profile updated."
       else
         render :edit
       end
     end
-  end
-
-  def destroy
   end
 
   def index
@@ -45,13 +42,26 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
+  def new_password
+    @user = User.find(params[:id])
+  end
+
+  def post_password
+    if @user.update(password_params)
+      redirect_to user_path(@user), message: "Password updated."
+    else
+      render :new_password
+    end
+  end
+
   private
 
-  def user_params
-    params.require(:user).permit(:first_name,:last_name,:email,:password,:username)
+  def password_params
+    params.require(:user).permit(:password)
   end
 
-  def user_edit_params
-    params.require(:user).permit(:first_name,:last_name,:email,:username,:password)
+  def user_params
+    params.require(:user).permit(:first_name,:last_name,:email,:username)
   end
+
 end

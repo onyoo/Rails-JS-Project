@@ -1,13 +1,14 @@
+<% if can? :edit, @subject %>
+  <title><%= title("Edit " + @subject.name) %></title>
 
-<title><%= title("Edit " + @subject.name) %></title>
+  <%= render partial: "application/edit_object_instructions", locals: { object: @subject } %>
 
-<%= render partial: "application/edit_object_instructions", locals: { object: @subject } %>
+  <div class="form">
 
-<div class="form">
+    <%= form_for [@subject.category, @subject], :url => edit_category_subject_path(@subject.category, @subject) do |f| %>
 
-  <%= form_for [@subject.category, @subject], :url => edit_category_subject_path(@subject.category, @subject) do |f| %>
-
-    <%= render partial: "application/form", locals: {f: f, category_id: @subject.category.id } %>
-  <% end %>
-  
-</div>
+      <%= render partial: "application/form", locals: {f: f, category_id: @subject.category.id } %>
+    <% end %>
+    
+  </div>
+<% end %>

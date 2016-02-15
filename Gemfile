@@ -30,6 +30,7 @@ gem 'simple_form'
 gem 'bootstrap-sass'
 gem 'omniauth'
 gem 'omniauth-facebook'
+gem 'cancancan', '~> 1.10'
 
 
 # Use ActiveModel has_secure_password
@@ -49,6 +50,7 @@ group :development, :test do
   gem 'rspec-collection_matchers', '~> 1.1.2'
   gem 'spring'
   gem 'capybara'
+  # gem 'capybara-webkit'
   gem 'pry'
   gem 'database_cleaner'
 

@@ -1,8 +1,9 @@
+<% if can? :edit, @resource %>
+  <title><%= title("Edit " + @resource.name.capitalize) %></title>
 
-<title><%= title("Edit " + @resource.name.capitalize) %></title>
+  <%= render partial: "application/edit_object_instructions", locals: { object: @resource } %>
 
-<%= render partial: "application/edit_object_instructions", locals: { object: @resource } %>
-
-<%= form_for [@resource.category, @resource.subject, @resource], url: edit_resource_path(@resource.category, @resource.subject, @resource) do |f| %>
-  <%= render partial: "application/form", locals: {f: f, subject_id: @resource.subject_id } %>
+  <%= form_for [@resource.category, @resource.subject, @resource], url: edit_resource_path(@resource.category, @resource.subject, @resource) do |f| %>
+    <%= render partial: "application/form", locals: {f: f, subject_id: @resource.subject_id } %>
+  <% end %>
 <% end %>

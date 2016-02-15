@@ -1,49 +1,51 @@
-<%= label_tag(:name, "New Category By Name") %>
-<%= f.text_field :name %>
-or select existing
+<% if can? :edit, @category %>
+  <%= label_tag(:name, "New Category By Name") %>
+  <%= f.text_field :name %>
+  or select existing
 
-  <%= f.collection_select :id, @categories, :id, :name, :include_blank => true %>
-    <br><br>
-    <datalist>
-      <% Category.all.each do |category| %>
-        <option name="<%=category.id%>" value="<%=category.name%>"></option>
-      <% end %>
-    </datalist>
+    <%= f.collection_select :id, @categories, :id, :name, :include_blank => true %>
+      <br><br>
+      <datalist>
+        <% Category.all.each do |category| %>
+          <option name="<%=category.id%>" value="<%=category.name%>"></option>
+        <% end %>
+      </datalist>
 
-  <%= f.fields_for :subjects do |subject|%>
-    <div id="subject_tree">
-      <%= label_tag(:name, "New Subject By Name") %>
-      <%= subject.text_field :name %>
-      
-      <%= subject.hidden_field :user_id, value: current_user.id %>
-      or select existing
+    <%= f.fields_for :subjects do |subject|%>
+      <div id="subject_tree">
+        <%= label_tag(:name, "New Subject By Name") %>
+        <%= subject.text_field :name %>
+        
+        <%= subject.hidden_field :user_id, value: current_user.id %>
+        or select existing
 
-      <%= subject.collection_select :id, @subjects, :id, :name, :include_blank => true %>
-        <br><br>
-        <datalist>
-          <% Subject.all.each do |subject| %>
-            <option name="<%=subject.name%>" value="<%=subject.name%>"></option>
-          <% end %>
-        </datalist>
+        <%= subject.collection_select :id, @subjects, :id, :name, :include_blank => true %>
+          <br><br>
+          <datalist>
+            <% Subject.all.each do |subject| %>
+              <option name="<%=subject.name%>" value="<%=subject.name%>"></option>
+            <% end %>
+          </datalist>
 
-      </div> <!-- subject_tree -->
-      <%= subject.fields_for :resources do |resource| %>
-        <div id="resource_tree">
-          <%= resource.label :name %>
-          <%= resource.text_field :name %>
-          <br>
-          <%= resource.label :url %>
-          <%= resource.text_field :url %>
-          <br>
-          <%= resource.label :description %>
-          <%= resource.text_area :description %>
-          <br>
-          <%= resource.label :price_per_month %>
-          <%= resource.number_field :price_per_month %>
+        </div> <!-- subject_tree -->
+        <%= subject.fields_for :resources do |resource| %>
+          <div id="resource_tree">
+            <%= resource.label :name %>
+            <%= resource.text_field :name %>
+            <br>
+            <%= resource.label :url %>
+            <%= resource.text_field :url %>
+            <br>
+            <%= resource.label :description %>
+            <%= resource.text_area :description %>
+            <br>
+            <%= resource.label :price_per_month %>
+            <%= resource.number_field :price_per_month %>
 
-          <%= resource.hidden_field :user_id, value: current_user.id %>
-        </div> <!-- resource_tree -->
-      <% end %> <!-- fields_for :resource -->  <br>
+            <%= resource.hidden_field :user_id, value: current_user.id %>
+          </div> <!-- resource_tree -->
+        <% end %> <!-- fields_for :resource -->  <br>
 
-<% end %> <!-- fields_for :subject -->
-<%= f.submit %>
+  <% end %> <!-- fields_for :subject -->
+  <%= f.submit %>
+<% end %>

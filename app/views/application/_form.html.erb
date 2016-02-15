@@ -6,6 +6,13 @@
   </tr>
 </div>
 
+<% if can? :delete, (@category || @subject || @resource) %>
+  <div class="destroy">
+    <%= f.label :_destroy, "Delete: " %>
+    <%= f.check_box :_destroy %>
+  </div>
+<% end %>
+
 <% if defined? category_id %>
   <div class="category_id">
     <%= f.hidden_field :category_id %>
@@ -33,18 +40,7 @@
     </tr>
   </div>
 
-  <div class="destroy">
-    <%= f.label :_destroy, "Delete: " %>
-    <%= f.check_box :_destroy %>
-  </div>
-  
   <%= f.hidden_field :subject_id %>
-
-<% elsif params[:action] == "edit" %>
-  <div class="destroy">
-    <%= f.label :_destroy, "Delete: " %>
-    <%= f.check_box :_destroy %>
-  </div>
 
 <% end %>
 <%= f.hidden_field :user_id, value: current_user.id %>

@@ -5,7 +5,9 @@
 <%= render partial: "flashnotice", locals: { flash: flash } %>
 <br><br>
 
-<%= link_to "Edit or delete this resource.", edit_category_subject_resource_path(@resource.category, @resource.subject, @resource) %>
+<% if can? :edit, @resource %>
+  <%= link_to "Edit this resource.", edit_category_subject_resource_path(@resource.category, @resource.subject, @resource) %>
+<% end %>
 
 <br><br>
 <%= render partial: "index", locals: { resource: @resource } %>

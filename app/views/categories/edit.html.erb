@@ -1,12 +1,13 @@
+<% if can? :edit, @category %>
+  <title><% title("Edit " + @category.name.capitalize) %></title>
 
-<title><% title("Edit " + @category.name.capitalize) %></title>
+  <%= render partial: "application/edit_object_instructions", locals: { object: @category } %>
 
-<%= render partial: "application/edit_object_instructions", locals: { object: @category } %>
+  <div class="form">
 
-<div class="form">
-
-  <%= form_for @category do |f| %>
-    <%= render partial: "application/form", locals: {f: f} %>
-  <% end %>
-  
-</div>
+    <%= form_for @category do |f| %>
+      <%= render partial: "application/form", locals: {f: f} %>
+    <% end %>
+    
+  </div>
+<% end %>

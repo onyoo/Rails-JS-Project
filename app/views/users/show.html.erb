@@ -3,9 +3,34 @@
 
 <% if current_user.id == @user.id %>
   <%= link_to "Edit or delete information", edit_user_path %> <br><br>
+  <%= link_to "Edit password", new_password_path %>
 <% end %>
 
-Name: <%= @user.first_name %> <%= @user.last_name %> <br>
-Username: <%= @user.username %> <br>
-Email: <%= @user.email %> <br>
-Status: <%= @user.member_status %> <br>
+<table>
+  <% if current_user.id == @user.id %>
+    <tr>
+      <td>Name:</td> <td><%= @user.first_name %> <%= @user.last_name %></td>
+    </tr>
+  <% end %>
+  
+  <tr>
+    <td>Username:</td> <td><%= @user.username %></td>
+  </tr>
+
+  <% if current_user.id == @user.id %>
+    <tr>
+      <td>Email:</td> <td><%= @user.email %></td>
+    </tr>
+  <% end %>
+
+  <tr>
+    <td>Status:</td> <td><%= @user.member_status %></td>
+  </tr>
+</table>
+
+<p>Contributions:</p>
+<ul>
+  <% @user.resources.each do |r| %>
+    <li><%= link_to r.name, category_subject_resource_path(r.category, r.subject, r) %></li>
+  <% end %>
+</ul>

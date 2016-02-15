@@ -29,11 +29,16 @@ class ResourcesController < ApplicationController
         @resource.update(resource_params)
         redirect_to category_subject_resource_path(@resource.category, @resource.subject, @resource), notice: "Successfully updated. Thanks!"
       end
-    elsif params[:resource][:addictive_ratings] || params[:resource][:usability_ratings]
-      @resource = Resource.find(params[:id])
-
-      @resource.add_ratings(params, current_user).save
-      redirect_to category_subject_resource_path(@resource.category, @resource.subject, @resource), notice: "Thanks for voting!"
+    elsif addictive_ratings || usability_ratings
+      if !addictive_ratings.between?(1,10)
+        redirect_to :back, notice: "Addictive rating must be between 1 and 10"
+      elsif !usability_ratings.between?(1,10)
+        redirect_to :back, notice: "Usability rating must be between 1 and 10"
+      else
+        @resource = Resource.find(params[:id])
+        @resource.add_ratings(params, current_user).save
+        redirect_to category_subject_resource_path(@resource.category, @resource.subject, @resource), notice: "Thanks for voting!"
+      end
     end
   end
 
@@ -52,6 +57,14 @@ class ResourcesController < ApplicationController
 
 
   private
+
+  def usability_ratings
+    params[:resource][:usability_ratings].to_i
+  end
+
+  def addictive_ratings
+    params[:resource][:addictive_ratings].to_i
+  end
 
   def resource_params
     params.require(:resource).permit(:name,:url,:description,:subject_id, :user_id, :price_per_month)

@@ -3,6 +3,8 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
   helper_method :current_user , :require_user  ## allows method to be called in views, not just other controllers
+  include CanCan::ControllerAdditions
+  before_action :check_member_status
 
   def home
     render "home"
@@ -18,4 +20,9 @@ class ApplicationController < ActionController::Base
   def require_user 
     redirect_to '/login' unless current_user 
   end
+
+  def check_member_status
+    current_user.nil? || current_user.update_status(current_user)
+  end
+
 end
