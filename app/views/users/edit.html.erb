@@ -1,12 +1,12 @@
 
 <title><% title("Edit User Profile") %></title>
 
-Please note that you can't edit your password here at this time. We're working on it :)
+<%= render partial: "user_validation_errors", locals: { user: @user } %>
 
 <div class="form">
 
   <%= form_for @user do |f| %>
-    <%= render partial: "form", locals: {f: f} %>
+    <%= render partial: "form", locals: { f: f } %>
   <% end %>
   
 </div>

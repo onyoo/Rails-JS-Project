@@ -1,0 +1,11 @@
+<% if user.errors.any? %>
+  <div id="fields_with_errors">
+    <h2>Please correct the following <%= pluralize(user.errors.count, "error") %> fields: </h2>
+ 
+    <ul>
+    <% user.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>

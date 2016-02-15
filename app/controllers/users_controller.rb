@@ -23,8 +23,11 @@ class UsersController < ApplicationController
       redirect_to home_path
     else
       @user = User.find(params[:id])
-      @user.update(user_edit_params)
-      redirect_to user_path(@user)
+      if @user.update(user_edit_params)
+        redirect_to user_path(@user)
+      else
+        render :edit
+      end
     end
   end
 

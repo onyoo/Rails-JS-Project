@@ -2,18 +2,7 @@
 <title> New User </title>
 
 <%= render partial: "application/new_object_instructions", locals: { object: @user } %>
-
-<% if @user.errors.any? %>
-  <div id="error_explanation">
-    <h2>Please correct the following <%= pluralize(@user.errors.count, "error") %> fields: </h2>
- 
-    <ul>
-    <% @user.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-    <% end %>
-    </ul>
-  </div>
-<% end %>
+<%= render partial: "user_validation_errors", locals: { user: @user } %>
 
 <div class="form">
 
