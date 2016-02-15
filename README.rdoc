@@ -1,1 +1,15 @@
 This is the Rails version of my Sinatra app. It keeps track of on-line learning resources for any subject in any category.
+
+Users can:
+  -Sign-in with Facebook via OmniAuth-Facebook gem
+  -Create with Facebook sign-in, and then later sign-in to the same account via sign-in
+
+Levels of authorization:
+  "Little Grasshopper"
+    -Create categories, subjects, and resources manually by browsing to each page
+    -Vote for resources
+  "Legend"
+    -User tree builder function (3 layered nested form to create everything from category to resource in one shot)
+    -Edit categories, subjects, and resources
+  "Grand Master"
+    -Delete categories, subjects, and resources
