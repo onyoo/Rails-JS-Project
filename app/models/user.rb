@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
 
   validates_uniqueness_of :username, :email
 
-  validates_length_of :password, in: 8..72
+  # validates_length_of :password, in: 8..72
 
   validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, :message => "Invalid email"
 

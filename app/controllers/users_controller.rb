@@ -23,7 +23,7 @@ class UsersController < ApplicationController
       redirect_to home_path
     else
       @user = User.find(params[:id])
-      if @user.update(user_params)
+      if @user.update(edit_user_params)
         redirect_to user_path(@user), message: "Profile updated."
       else
         render :edit
@@ -60,8 +60,12 @@ class UsersController < ApplicationController
     params.require(:user).permit(:password)
   end
 
-  def user_params
+  def edit_user_params
     params.require(:user).permit(:first_name,:last_name,:email,:username)
+  end
+
+  def user_params
+    params.require(:user).permit(:first_name,:last_name,:email,:username,:password)
   end
 
 end

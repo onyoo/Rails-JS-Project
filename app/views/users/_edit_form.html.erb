@@ -18,9 +18,11 @@
   <%= f.email_field :email, :placeholder => "Email" %>
 </div>
 
-<div class="password">
-  <%= f.label :password, :placeholder => "Password" %>
-  <%= f.password_field :password, :placeholder => "Password" %>
-</div>
+<% if params[:action] == "edit" %>
+  <%= f.label :_destroy, "Delete: " %>
+  <%= f.check_box :_destroy %>
 
-<%= f.submit "Create an account", class: "btn-submit" %>
+  <%= f.submit "Submit Edits", class: "btn-submit" %>
+<% else %>
+  <%= f.submit "Create an account", class: "btn-submit" %>
+<% end %>
