@@ -10,7 +10,7 @@ class CategoriesController < ApplicationController
       redirect_to new_category_path, notice: "That category seems to exist..."
     else
       @category = Category.create(category_params)
-      redirect_to category_path(@category)
+      redirect_to category_path(@category), notice: "Successfully created!"
     end
   end
 
@@ -21,11 +21,11 @@ class CategoriesController < ApplicationController
   def update
     if params[:category][:_destroy] == "1"
       destroy
-      redirect_to categories_path
+      redirect_to categories_path, notice: "Successfully deleted."
     else
       @category = Category.find(params[:id])
       @category.update(category_params)
-      redirect_to category_path(@category)
+      redirect_to category_path(@category), notice: "Successfully updated. Thanks!"
     end
   end
 
@@ -54,7 +54,7 @@ class CategoriesController < ApplicationController
   def grow_tree
     if Category.create_correct_associations(params)
       @resource = Resource.last
-      redirect_to category_subject_resource_path(@resource.category, @resource.subject, @resource)
+      redirect_to category_subject_resource_path(@resource.category, @resource.subject, @resource), message: "Masterful creation!"
     else
       redirect_to tree_path, message: "There was a problem"
     end

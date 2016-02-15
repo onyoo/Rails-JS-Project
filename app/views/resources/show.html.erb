@@ -2,14 +2,17 @@
 <title><% title( @resource.name.capitalize + "'s Details" ) %></title>
 
 <%= render partial: 'application/navigation', locals: { object: @resource } %>
-
+<%= render partial: "flashnotice", locals: { flash: flash } %>
 <br><br>
 
-<%= link_to "Edit or delete this resource.", edit_category_subject_resource_path(@resource.category, @resource.subject, @resource) %> <br><br>
+<%= link_to "Edit or delete this resource.", edit_category_subject_resource_path(@resource.category, @resource.subject, @resource) %>
 
-
+<br><br>
 <%= render partial: "index", locals: { resource: @resource } %>
-
+<br>
+<div class="instructions">
+Ratings must be between 1 and 10. Edit your rating by submitting your vote again. (your old vote will be deleted)
+</div>
 
 <%= form_for [@resource.category, @resource.subject, @resource], url: edit_resource_path(@resource.category, @resource.subject, @resource) do |f| %>
   <%= f.label :usability_ratings, "Usability:" %>

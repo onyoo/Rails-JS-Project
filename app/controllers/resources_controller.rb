@@ -11,7 +11,7 @@ class ResourcesController < ApplicationController
       redirect_to new_resource_path(new_resource_hash), notice: "That resource seems to exist..."
     else
       @resource = Resource.create(resource_params)
-      redirect_to category_subject_resource_path(@resource.category, @resource.subject, @resource)
+      redirect_to category_subject_resource_path(@resource.category, @resource.subject, @resource), notice: "Successfully created!"
     end
   end
 
@@ -23,25 +23,17 @@ class ResourcesController < ApplicationController
     if params[:resource][:name]
       if params[:resource][:_destroy] == "1"
         destroy
-        redirect_to category_subject_path(@subject.category, @subject)
+        redirect_to category_subject_path(@subject.category, @subject), notice: "Successfully deleted."
       else
         @resource = Resource.find(params[:id])
         @resource.update(resource_params)
-        redirect_to category_subject_resource_path(@resource.category, @resource.subject, @resource)
+        redirect_to category_subject_resource_path(@resource.category, @resource.subject, @resource), notice: "Successfully updated. Thanks!"
       end
     elsif params[:resource][:addictive_ratings] || params[:resource][:usability_ratings]
       @resource = Resource.find(params[:id])
 
-      hash_1 = eval(@resource.addictive_ratings)
-      hash_1[current_user.id] = params[:resource][:addictive_ratings].to_i
-      @resource.addictive_ratings = hash_1
-
-      hash_2 = eval(@resource.usability_ratings)
-      hash_2[current_user.id] = params[:resource][:usability_ratings].to_i
-      @resource.usability_ratings = hash_2
-
-      @resource.save
-      redirect_to category_subject_resource_path(@resource.category, @resource.subject, @resource)
+      @resource.add_ratings(params, current_user).save
+      redirect_to category_subject_resource_path(@resource.category, @resource.subject, @resource), notice: "Thanks for voting!"
     end
   end
 

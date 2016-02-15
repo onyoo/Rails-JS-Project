@@ -2,7 +2,7 @@
 <title> <% title("Category Index") %> </title>
 
 <%= render partial: "application/new_link", locals: { object: @categories[0] } %>
-
+<%= render partial: "flashnotice", locals: { flash: flash } %>
 <ul>
   <% @categories.each do |category| %>
     <li><%= render partial: "application/index", locals: { object: category } %></li>

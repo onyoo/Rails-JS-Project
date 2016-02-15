@@ -1,6 +1,25 @@
-Name: <%= resource.name %> <br>
-URL: <%= link_to resource.url, url_with_protocol(resource.url), :target => '_blank' %> <br>
-Description: <%= resource.description %> <br>
-Price Per Month: $<%= resource.price_per_month %> <br>
-Usability Rating: <%= eval(resource.usability_ratings).values.sum / eval(resource.usability_ratings).values.count unless eval(resource.usability_ratings).values.count == 0%> <br>
-Addictiveness Rating: <%= eval(resource.addictive_ratings).values.sum / eval(resource.addictive_ratings).values.count unless eval(resource.addictive_ratings).values.count == 0 %>
+<table>
+<tr>
+<td>Name:</td> <td><%= resource.name %></td>
+</tr>
+
+<tr>
+<td>URL:</td> <td><%= link_to resource.url, url_with_protocol(resource.url), :target => '_blank' %></td>
+</tr>
+
+<tr>
+<td>Description:</td> <td><%= resource.description %></td>
+</tr>
+
+<tr>
+<td>Price Per Month:</td> <td>$<%= resource.price_per_month %></td>
+</tr>
+
+<tr>
+<td>Average Usability Rating:</td> <td><%= eval(resource.usability_ratings).values.sum / eval(resource.usability_ratings).values.count unless eval(resource.usability_ratings).values.count == 0%></td>
+</tr>
+
+<tr>
+<td>Average Addictiveness Rating:</td> <td><%= eval(resource.addictive_ratings).values.sum / eval(resource.addictive_ratings).values.count unless eval(resource.addictive_ratings).values.count == 0 %></td>
+</tr>
+</table>
