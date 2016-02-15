@@ -29,9 +29,18 @@ class ResourcesController < ApplicationController
         @resource.update(resource_params)
         redirect_to category_subject_resource_path(@resource.category, @resource.subject, @resource)
       end
-    elsif params[:resource][:usability_rating]
+    elsif params[:resource][:addictive_ratings] || params[:resource][:usability_ratings]
       @resource = Resource.find(params[:id])
-      @resource.update(resource_rating_params)
+
+      hash_1 = eval(@resource.addictive_ratings)
+      hash_1[current_user.id] = params[:resource][:addictive_ratings].to_i
+      @resource.addictive_ratings = hash_1
+
+      hash_2 = eval(@resource.usability_ratings)
+      hash_2[current_user.id] = params[:resource][:usability_ratings].to_i
+      @resource.usability_ratings = hash_2
+
+      @resource.save
       redirect_to category_subject_resource_path(@resource.category, @resource.subject, @resource)
     end
   end
@@ -56,10 +65,6 @@ class ResourcesController < ApplicationController
     params.require(:resource).permit(:name,:url,:description,:subject_id, :user_id, :price_per_month)
   end
 
-  def resource_rating_params
-    params.require(:resource).permit(:usability_rating,:addictive_rating)
-  end
-
   def new_resource_hash
         {
         controller: "resources",
@@ -68,4 +73,5 @@ class ResourcesController < ApplicationController
         subject_id: @resource.subject.id
       }
   end
+
 end

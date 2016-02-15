@@ -1,7 +1,7 @@
 To Do List:
 
-  -include Facebook auth (oauth)
-  -use nested routes:
+  O-include Facebook auth (oauth)
+  O-use nested routes:
       resources :posts, ~~~shallow: true~~~ do
         resources :comments do
           resources :versions

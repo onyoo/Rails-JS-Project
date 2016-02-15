@@ -12,11 +12,11 @@
 
 
 <%= form_for [@resource.category, @resource.subject, @resource], url: edit_resource_path(@resource.category, @resource.subject, @resource) do |f| %>
-  <%= f.label :usability_rating, "Usability:" %>
-  <%= f.number_field :usability_rating %>
+  <%= f.label :usability_ratings, "Usability:" %>
+  <%= f.number_field :usability_ratings %>
 
-  <%= f.label :addictive_rating, "Addictiveness" %>
-  <%= f.number_field :addictive_rating %>
+  <%= f.label :addictive_ratings, "Addictiveness" %>
+  <%= f.number_field :addictive_ratings %>
 
   <%= f.submit %>
 <% end %>

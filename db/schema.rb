@@ -25,10 +25,10 @@ ActiveRecord::Schema.define(version: 5) do
     t.string   "description"
     t.integer  "subject_id"
     t.integer  "user_id"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
-    t.decimal  "usability_rating"
-    t.decimal  "addictive_rating"
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+    t.text     "usability_ratings", default: "{}"
+    t.text     "addictive_ratings", default: "{}"
     t.decimal  "price_per_month"
   end
 

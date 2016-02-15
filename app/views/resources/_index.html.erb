@@ -2,5 +2,5 @@ Name: <%= resource.name %> <br>
 URL: <%= link_to resource.url, url_with_protocol(resource.url), :target => '_blank' %> <br>
 Description: <%= resource.description %> <br>
 Price Per Month: $<%= resource.price_per_month %> <br>
-Usability Rating: <%= resource.usability_rating %> <br>
-Addictiveness Rating: <%= resource.addictive_rating %>
+Usability Rating: <%= eval(resource.usability_ratings).values.sum / eval(resource.usability_ratings).values.count unless eval(resource.usability_ratings).values.count == 0%> <br>
+Addictiveness Rating: <%= eval(resource.addictive_ratings).values.sum / eval(resource.addictive_ratings).values.count unless eval(resource.addictive_ratings).values.count == 0 %>
