@@ -1,32 +1,52 @@
-<%= f.label :name %>
-<%= f.text_field :name %>
+<table>
+<div class="name">
+  <tr>
+  <td><%= f.label :name %></td>
+  <td><%= f.text_field :name %></td>
+  </tr>
+</div>
 
 <% if defined? category_id %>
-  <%= f.hidden_field :category_id %>
+  <div class="category_id">
+    <%= f.hidden_field :category_id %>
+  </div>
 
-  <%= f.hidden_field :user_id, value: current_user.id %>
-<% end %>
+<% elsif defined? subject_id %>
+  <div class="url">
+    <tr>
+    <td><%= f.label :url %></td>
+    <td><%= f.text_field :url %></td>
+    </tr>
+  </div>
 
-<% if defined? subject_id %>
-  <%= f.label :url %>
-  <%= f.text_field :url %>
+  <div class="description">
+    <tr>
+    <td><%= f.label :description %></td>
+    <td><%= f.text_area :description %></td>
+    </tr>
+  </div>
 
-  <%= f.label :description %>
-  <%= f.text_field :description %>
+  <div class="price">
+    <tr>
+    <td><%= f.label :price_per_month %></td>
+    <td><%= f.number_field :price_per_month %></td>
+    </tr>
+  </div>
 
-  <%= f.label :price_per_month %>
-  <%= f.number_field :price_per_month %>
-
+  <div class="destroy">
+    <%= f.label :_destroy, "Delete: " %>
+    <%= f.check_box :_destroy %>
+  </div>
+  
   <%= f.hidden_field :subject_id %>
 
-  <%= f.hidden_field :user_id, value: current_user.id %>
-<% end %>
-
-<% if params[:action] == "edit" %>
-
-  <%= f.label :_destroy, "Delete: " %>
-  <%= f.check_box :_destroy %>
+<% elsif params[:action] == "edit" %>
+  <div class="destroy">
+    <%= f.label :_destroy, "Delete: " %>
+    <%= f.check_box :_destroy %>
+  </div>
 
 <% end %>
-
+<%= f.hidden_field :user_id, value: current_user.id %>
+</table>
 <%= f.submit %>

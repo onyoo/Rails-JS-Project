@@ -7,15 +7,15 @@ class SubjectsController < ApplicationController
 
   def create
     if Subject.find_by(name: (params[:subject][:name]))
-      redirect_to new_subject_path, notice: "That subject seems to exist..."
+      redirect_to new_category_subject_path, notice: "That subject seems to exist..."
     elsif params[:subject][:name] == ''
-      redirect_to new_subject_path, notice: "Must provide a name."
+      redirect_to new_category_subject_path, notice: "Must provide a name."
     else
       @subject = Subject.create(subject_params)
       if category_id_params
         @subject.update(category_id: category_id_params, user_id: current_user.id)
       end
-      redirect_to subject_path(@subject)
+      redirect_to category_subject_path(@subject.category, @subject)
     end
   end
 
@@ -30,7 +30,7 @@ class SubjectsController < ApplicationController
     else
       @subject = Subject.find(params[:id])
       @subject.update(subject_params)
-      redirect_to subject_path(@subject)
+      redirect_to category_subject_path(@subject.category, @subject)
     end
   end
 
@@ -53,7 +53,7 @@ class SubjectsController < ApplicationController
 
   def new_subject_with_cat
     @subject = Subject.new
-    @subject.category_id = params[:id]
+    @subject.category_id = (params[:category_id] || params[:id])
   end
 
   def subject_params

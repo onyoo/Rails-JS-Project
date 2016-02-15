@@ -11,7 +11,7 @@ class ResourcesController < ApplicationController
       redirect_to new_resource_path(new_resource_hash), notice: "That resource seems to exist..."
     else
       @resource = Resource.create(resource_params)
-      redirect_to resource_path(@resource)
+      redirect_to category_subject_resource_path(@resource.category, @resource.subject, @resource)
     end
   end
 
@@ -23,16 +23,16 @@ class ResourcesController < ApplicationController
     if params[:resource][:name]
       if params[:resource][:_destroy] == "1"
         destroy
-        redirect_to subject_path(@subject)
+        redirect_to category_subject_path(@subject.category, @subject)
       else
         @resource = Resource.find(params[:id])
         @resource.update(resource_params)
-        redirect_to resource_path(@resource)
+        redirect_to category_subject_resource_path(@resource.category, @resource.subject, @resource)
       end
     elsif params[:resource][:usability_rating]
       @resource = Resource.find(params[:id])
       @resource.update(resource_rating_params)
-      redirect_to resource_path(@resource)
+      redirect_to category_subject_resource_path(@resource.category, @resource.subject, @resource)
     end
   end
 

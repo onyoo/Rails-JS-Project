@@ -52,12 +52,11 @@ class CategoriesController < ApplicationController
   end
 
   def grow_tree
-    Category.create_correct_associations(params)
-    binding.pry
-    if errors.messages.empty?
-      redirect_to resource_path(@resource = Resource.last)
+    if Category.create_correct_associations(params)
+      @resource = Resource.last
+      redirect_to category_subject_resource_path(@resource.category, @resource.subject, @resource)
     else
-      render 'new', notice: "You F-ed-up"
+      redirect_to tree_path, message: "There was a problem"
     end
   end
 
@@ -67,16 +66,6 @@ class CategoriesController < ApplicationController
     params.require(:category).permit(:name)
   end
 
-  def tree_params_old_cat
-    params.require(:category).permit(:id, :subjects_attributes => [:name, :user_id, :resources_attributes => [:name,:url,:description,:subject_id, :user_id, :price_per_month]])
-  end
-    
-  def tree_params_old_cat_old_sub
-    params.require(:category).permit(:id, :subjects_attributes => [:user_id, :id, :resources_attributes => [:name,:url,:description,:subject_id, :user_id, :price_per_month]])
-  end
 
-  def tree_params_new_cat_and_new_sub
-    params.require(:category).permit(:name, :subjects_attributes => [:name, :user_id, :resources_attributes => [:name,:url,:description,:subject_id, :user_id, :price_per_month]])
-  end
 
 end

@@ -1,9 +1,20 @@
 Rails.application.routes.draw do
 
+  get '/subjects' => 'subjects#index', as: 'home_subjects'
+  get '/resources' => 'resources#index', as: 'resources'
+
+  # post '/subjects/:category_id/subjects' => 'subjects#create', as: 'category/subjects'
+  patch '/categories/:category_id/subjects/:id/edit' => 'subjects#update', as: 'edit_subject'
+  patch '/categories/:category_id/subjects/:subject_id/resources/:id/edit' => 'resources#update', as: 'edit_resource'
+
   resources :users
-  resources :categories
-  resources :subjects, only: [:index, :create, :edit, :show, :update, :destroy]
-  resources :resources, only: [:index, :create, :edit, :show, :update, :destroy]
+  resources :categories do
+    resources :subjects, only: [:create, :new, :edit, :show, :destroy] do
+      resources :resources, only: [:create, :edit, :new, :show, :update, :destroy]
+    end
+  end
+
+
 
   get 'home' => 'application#home'
 

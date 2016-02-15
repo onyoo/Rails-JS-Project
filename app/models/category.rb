@@ -10,11 +10,11 @@ class Category < ActiveRecord::Base
 
   def self.create_correct_associations(params)
     if (params[:category][:id] != "") && (params[:category][:subjects_attributes]["0"][:id] == "")
-      Category.create_with_new_subject(tree_params_old_cat)
+      Category.create_with_new_subject(tree_params_old_cat(params))
     elsif (params[:category][:id] != "") && (params[:category][:subjects_attributes]["0"][:id] != "")
-      Category.create_tree(tree_params_old_cat_old_sub)
+      Category.create_tree(tree_params_old_cat_old_sub(params))
     else
-      Category.create_with_new_category_and_subject(tree_params_new_cat_and_new_sub)
+      Category.create_with_new_category_and_subject(tree_params_new_cat_and_new_sub(params))
     end
   end
 
@@ -37,4 +37,17 @@ class Category < ActiveRecord::Base
   end
 
 
+
+
+  def self.tree_params_old_cat(params)
+    params.require(:category).permit(:id, :subjects_attributes => [:name, :user_id, :resources_attributes => [:name,:url,:description,:subject_id, :user_id, :price_per_month]])
+  end
+    
+  def self.tree_params_old_cat_old_sub(params)
+    params.require(:category).permit(:id, :subjects_attributes => [:user_id, :id, :resources_attributes => [:name,:url,:description,:subject_id, :user_id, :price_per_month]])
+  end
+
+  def self.tree_params_new_cat_and_new_sub(params)
+    params.require(:category).permit(:name, :subjects_attributes => [:name, :user_id, :resources_attributes => [:name,:url,:description,:subject_id, :user_id, :price_per_month]])
+  end
 end

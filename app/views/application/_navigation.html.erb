@@ -4,10 +4,6 @@
 
 <% if !defined? object.category %>
 
-  <%= link_to "Categories", categories_path %>  
-
-   > <!-- do not edit! Relation marker!! -->
-
   <%= object.name %><!-- Category name -->
 
 <% else %>
@@ -22,7 +18,7 @@
 
   <% else %>
 
-    <%= link_to object.subject.name, subject_path(object.subject) %>
+    <%= link_to object.subject.name, category_subject_path(object.category, object.subject) %>
 
      > <!-- do not edit! Relation marker!! -->
 

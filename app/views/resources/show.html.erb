@@ -5,13 +5,13 @@
 
 <br><br>
 
-<%= link_to "Edit or delete this resource.", edit_resource_path %> <br><br>
+<%= link_to "Edit or delete this resource.", edit_category_subject_resource_path(@resource.category, @resource.subject, @resource) %> <br><br>
 
 
 <%= render partial: "index", locals: { resource: @resource } %>
 
 
-<%= form_for @resource do |f| %>
+<%= form_for [@resource.category, @resource.subject, @resource], url: edit_resource_path(@resource.category, @resource.subject, @resource) do |f| %>
   <%= f.label :usability_rating, "Usability:" %>
   <%= f.number_field :usability_rating %>
 

@@ -5,7 +5,7 @@
 
 <div class="form">
 
-  <%= form_for @subject do |f| %>
+  <%= form_for [@subject.category, @subject], :url => edit_category_subject_path(@subject.category, @subject) do |f| %>
 
     <%= render partial: "application/form", locals: {f: f, category_id: @subject.category.id } %>
   <% end %>

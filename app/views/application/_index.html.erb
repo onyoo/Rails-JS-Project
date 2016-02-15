@@ -1,6 +1,9 @@
-<% unless defined? object.first_name %>
-
-  <%= link_to object.name, send(((object.class.name + "_path").downcase), object ) %>
-<% else %>
+<% if defined? object.category_id %> <!-- subject -->
+  <%= link_to object.name, send(('category_' + object.class.name.downcase + "_path"), object.category_id, object.id ) %>
+<% elsif defined? object.first_name%> <!-- user -->
   <%= link_to object.username, send(((object.class.name + "_path").downcase), object ) %>
+<% elsif defined? object.subject_id %>
+  <%= link_to object.name, category_subject_resource_path(object.category, object.subject, object) %>
+<% else %>
+  <%= link_to object.name, category_path(object)%>
 <% end %>
