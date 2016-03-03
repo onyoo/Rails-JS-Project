@@ -3,14 +3,14 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
-  def create 
-    @user = User.new(user_params) 
-    if @user.save 
-      session[:user_id] = @user.id 
+  def create
+    @user = User.new(user_params)
+    if @user.save
+      session[:user_id] = @user.id
       redirect_to home_path
-    else 
+    else
       render new_user_path
-    end 
+    end
   end
 
   def edit
@@ -19,7 +19,8 @@ class UsersController < ApplicationController
 
   def update
     if params[:user][:_destroy] == "1"
-      destroy
+      User.destroy(current_user)
+      session[:id] = nil
       redirect_to home_path
     else
       @user = User.find(params[:id])

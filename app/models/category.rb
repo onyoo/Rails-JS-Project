@@ -19,15 +19,8 @@ class Category < ActiveRecord::Base
   end
 
   def self.create_tree(tree_params)
-    @resource = Resource.create(tree_params[:subjects_attributes]["0"][:resources_attributes]["0"])
     @subject = Subject.find(tree_params[:subjects_attributes]["0"][:id])
-    @subject.resources << @resource # associate the resource with the subject and load all resources
-    @subject.save
-    
-# Avi's sugestion:
-    # @subject = Subject.find(tree_params[:subjects_attributes]["0"][:id])
-    # @subject.resources.create(tree_params[:subjects_attributes]["0"][:resources_attributes]["0"])
-
+    @subject.resources.create(tree_params[:subjects_attributes]["0"][:resources_attributes]["0"])
   end
 
   def self.create_with_new_subject(tree_params)
