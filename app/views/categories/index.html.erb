@@ -1,8 +1,7 @@
 
-<title> <% title("Category Index") %> </title>
+<% title("Category Index") %>
 <%= link_to "Make a new category!", new_category_path %>
 
-<%= render partial: "flashnotice", locals: { flash: flash } %>
 <ul>
   <% @categories.each do |category| %>
     <li><%= render partial: "application/index", locals: { object: category } %></li>

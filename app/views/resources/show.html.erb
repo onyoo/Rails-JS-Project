@@ -1,8 +1,8 @@
 
-<title><% title( @resource.name.capitalize + "'s Details" ) %></title>
+<% title( @resource.name.capitalize + "'s Details" ) %>
 
-<%= render partial: 'application/navigation', locals: { object: @resource } %>
-<%= render partial: "flashnotice", locals: { flash: flash } %>
+<%= render 'application/navigation',  object: @resource  %>
+
 <br><br>
 
 <% if can? :edit, @resource %>
@@ -16,7 +16,7 @@
 Ratings must be between 1 and 10. Edit your rating by submitting your vote again. (your old vote will be deleted)
 </div>
 
-<%= form_for [@resource.category, @resource.subject, @resource], url: edit_resource_path(@resource.category, @resource.subject, @resource) do |f| %>
+<%= form_for [@resource], url: edit_resource_path(@resource.category, @resource.subject, @resource) do |f| %>
   <%= f.label :usability_ratings, "Usability:" %>
   <%= f.number_field :usability_ratings %>
 

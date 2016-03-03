@@ -41,7 +41,7 @@ class CategoriesController < ApplicationController
     @category = Category.find(params[:id])
   end
 
-
+# #plant_tree & grow_tree should be new and create actions of different controller with model
   def plant_tree
     @category = Category.new
     subject = @category.subjects.build

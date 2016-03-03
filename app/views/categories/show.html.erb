@@ -1,8 +1,8 @@
 
-<title><% title(@category.name.capitalize + "'s Subjects") %></title>
+<% title(@category.name.capitalize + "'s Subjects") %>
 
 <%= render partial: 'application/navigation', locals: { object: @category } %>
-<%= render partial: "flashnotice", locals: { flash: flash } %>
+
 <br><br>
 
 <%= link_to "Make a new subject!", new_subject_path %>

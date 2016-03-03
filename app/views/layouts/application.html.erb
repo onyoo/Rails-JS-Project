@@ -10,7 +10,11 @@
 <%= render "header" %>
 
 <div id="content">
+
+<%= render "flash_notice", flash: flash %>
+
 <%= yield %>
+
 </div>
 
 <%= render "footer" %>

@@ -5,13 +5,7 @@ class SessionsController < ApplicationController
 
   def create
     if request.env['omniauth.auth']
-      @user = User.find_or_create_by(email: auth[:info][:email]) do  |user|
-        user.first_name ||= auth['info']['name'].split(' ')[0]
-        user.last_name ||= auth['info']['name'].split(' ')[1]
-        user.username ||= (user.first_name + user.last_name)
-        user.password ||= user.email
-      end
-      @user.save unless @user.id
+      @user = User.find_or_creatre_by_omniauth(request.env['omniauth.auth']['info'])
       session[:user_id] = @user.id
       redirect_to home_path, :notice => "Logged in!"
     else
@@ -22,11 +16,11 @@ class SessionsController < ApplicationController
       else
         redirect_to login_path, notice: "Invalid email or password."
       end
-    end 
+    end
   end
 
-  def destroy 
-    session[:user_id] = nil 
+  def destroy
+    session[:user_id] = nil
     redirect_to home_path, notice => "Logged out!"
   end
 

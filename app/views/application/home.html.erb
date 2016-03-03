@@ -1,7 +1,5 @@
 <h1>Welcome to LARGE! The Learning Resource Guide!</h1>
 
-<%= render partial: "flashnotice", locals: { flash: flash } %>
-
 <div id="categories_index">
   <%= link_to 'Categories', categories_path %>
 </div>
@@ -18,5 +16,7 @@
   <%= link_to 'Users', users_path %>
 </div>
 <br><br>
-Be a power-user!
- <%= link_to "Build a tree of resources...", tree_path %> <br>
+
+<p>Be a power-user!</p>
+
+<%= link_to "Build a tree of resources...", tree_path %> <br>

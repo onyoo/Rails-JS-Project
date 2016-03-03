@@ -21,8 +21,13 @@ class Category < ActiveRecord::Base
   def self.create_tree(tree_params)
     @resource = Resource.create(tree_params[:subjects_attributes]["0"][:resources_attributes]["0"])
     @subject = Subject.find(tree_params[:subjects_attributes]["0"][:id])
-    @subject.resources << @resource
+    @subject.resources << @resource # associate the resource with the subject and load all resources
     @subject.save
+    
+# Avi's sugestion:
+    # @subject = Subject.find(tree_params[:subjects_attributes]["0"][:id])
+    # @subject.resources.create(tree_params[:subjects_attributes]["0"][:resources_attributes]["0"])
+
   end
 
   def self.create_with_new_subject(tree_params)
@@ -42,7 +47,7 @@ class Category < ActiveRecord::Base
   def self.tree_params_old_cat(params)
     params.require(:category).permit(:id, :subjects_attributes => [:name, :user_id, :resources_attributes => [:name,:url,:description,:subject_id, :user_id, :price_per_month]])
   end
-    
+
   def self.tree_params_old_cat_old_sub(params)
     params.require(:category).permit(:id, :subjects_attributes => [:user_id, :id, :resources_attributes => [:name,:url,:description,:subject_id, :user_id, :price_per_month]])
   end

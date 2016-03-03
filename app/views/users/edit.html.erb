@@ -1,5 +1,5 @@
 <% if current_user.id == @user.id %>
-  <title><% title("Edit User Profile") %></title>
+  <% title("Edit User Profile") %>
 
   <%= render partial: "user_validation_errors", locals: { user: @user } %>
 
@@ -8,6 +8,6 @@
     <%= form_for @user do |f| %>
       <%= render partial: "edit_form", locals: { f: f } %>
     <% end %>
-    
+
   </div>
 <% end %>

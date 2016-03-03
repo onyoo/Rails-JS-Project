@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-         
+
   has_secure_password
 
   has_many :subjects
@@ -24,6 +24,17 @@ class User < ActiveRecord::Base
       user.member_status = "Little Grasshopper"
     end
     user.save
+  end
+
+  def self.find_or_creatre_by_omniauth(info)
+    @user = User.find_or_create_by(email: info[:email]) do  |user|
+      user.first_name ||= auth['info']['name'].split(' ')[0]
+      user.last_name ||= auth['info']['name'].split(' ')[1]
+      user.username ||= (user.first_name + user.last_name)
+      user.password ||= user.email
+    end
+    @user.save unless @user.id
+    @user
   end
 
 end

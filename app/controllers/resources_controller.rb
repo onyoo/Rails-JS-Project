@@ -1,6 +1,6 @@
 class ResourcesController < ApplicationController
   before_action :require_user, only: [:index, :show]
-  
+
   def new
     @resource = Resource.new
     @resource.subject_id = params[:subject_id]
@@ -20,6 +20,14 @@ class ResourcesController < ApplicationController
   end
 
   def update
+    #Avi's suggestion:
+      # @resource = Resource.find(params[:id])
+      # if @resource.update_from_web(params[:resource])
+      #   redirect_telse
+      # else
+      #   render
+      # end
+
     if params[:resource][:name]
       if params[:resource][:_destroy] == "1"
         destroy

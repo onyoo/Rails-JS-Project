@@ -1,11 +1,10 @@
 
-<title><% title("New Resource") %></title>
+<% title("New Resource") %>
 
 <%= render partial: "application/new_object_instructions", locals: { object: @resource } %>
 
-<%= render partial: "flashnotice", locals: { flash: flash } %>
 <div class="form">
-  
+
     <%= form_for [@resource.category, @resource.subject, @resource], url: category_subject_resources_path(@resource.category, @resource.subject, @resource) do |f| %>
       <%= render partial: "application/form", locals: {f: f, subject_id: @resource.subject_id } %>
     <% end %>

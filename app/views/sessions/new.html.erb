@@ -2,12 +2,10 @@
 
   <h1>Log in</h1>
 
-<%= render partial: "flashnotice", locals: { flash: flash } %>
-
   <div class="login_form">
-    <%= form_for(:session, url: login_path) do |f| %> 
-      <%= f.email_field :email, :placeholder => "Email" %> 
-      <%= f.password_field :password, :placeholder => "Password" %> 
+    <%= form_for(:session, url: login_path) do |f| %>
+      <%= f.email_field :email, :placeholder => "Email" %>
+      <%= f.password_field :password, :placeholder => "Password" %>
       <%= f.submit "Log in", class: "btn-submit" %>
     <% end %>
   </div> <!-- login_form -->

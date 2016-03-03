@@ -1,11 +1,8 @@
 
-<title> <% title("New Category") %> </title>
+<% title("New Category") %>
 
 <%= render partial: "application/new_object_instructions", locals: { object: @category } %>
 <br>
-
-<%= render partial: "flashnotice", locals: { flash: flash } %>
-
 
 <div class="form">
 
@@ -15,7 +12,7 @@
     <% end %>
   <% else %>
     <% if can? :edit, @category %>
-      Use this great power with care!! 
+      Use this great power with care!!
 
       <%= form_for @category, url: "/tree_builder/new", method: "post" do |f| %>
         <%= render partial: "tree_builder", locals: {f: f} %>

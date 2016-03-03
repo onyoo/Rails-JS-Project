@@ -1,8 +1,8 @@
 
-<title><% title(@subject.name.capitalize + "'s Details") %></title>
+<% title(@subject.name.capitalize + "'s Details") %>
 
 <%= render partial: 'application/navigation', locals: { object: @subject } %>
-<%= render partial: "flashnotice", locals: { flash: flash } %>
+
 <br><br>
 
 <% if can? :edit, @subject %>

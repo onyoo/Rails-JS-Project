@@ -1,9 +1,7 @@
 
-<title><% title("New Subject") %></title>
+<% title("New Subject") %>
 
 <%= render partial: "application/new_object_instructions", locals: { object: @subject } %>
-
-<%= render partial: "flashnotice", locals: { flash: flash } %>
 
 <div class="form">
 
@@ -11,5 +9,5 @@
 
     <%= render partial: "application/form", locals: {f: f, category_id: @subject.category.id } %>
   <% end %>
-  
+
 </div>
