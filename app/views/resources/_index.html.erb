@@ -16,10 +16,10 @@
 </tr>
 
 <tr>
-<td>Average Usability Rating:</td> <td><%= eval(resource.usability_ratings).values.sum / eval(resource.usability_ratings).values.count unless eval(resource.usability_ratings).values.count == 0%></td>
+<td>Average Usability Rating:</td> <td><%= usability_rating %></td>
 </tr>
 
 <tr>
-<td>Average Addictiveness Rating:</td> <td><%= eval(resource.addictive_ratings).values.sum / eval(resource.addictive_ratings).values.count unless eval(resource.addictive_ratings).values.count == 0 %></td>
+<td>Average Addictiveness Rating:</td> <td><%= addictiveness_rating %></td>
 </tr>
 </table>

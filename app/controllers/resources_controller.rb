@@ -27,25 +27,22 @@ class ResourcesController < ApplicationController
       # else
       #   render
       # end
+    @resource = Resource.find(params[:id])
 
     if params[:resource][:name]
       if params[:resource][:_destroy] == "1"
-        destroy
+        @resource.destroy
         redirect_to category_subject_path(@subject.category, @subject), notice: "Successfully deleted."
       else
-        @resource = Resource.find(params[:id])
+
         @resource.update(resource_params)
         redirect_to category_subject_resource_path(@resource.category, @resource.subject, @resource), notice: "Successfully updated. Thanks!"
       end
-    elsif addictive_ratings || usability_ratings
-      if !addictive_ratings.between?(1,10)
-        redirect_to :back, notice: "Addictive rating must be between 1 and 10"
-      elsif !usability_ratings.between?(1,10)
-        redirect_to :back, notice: "Usability rating must be between 1 and 10"
-      else
-        @resource = Resource.find(params[:id])
-        @resource.add_ratings(params, current_user).save
+    elsif addictive_rating || usability_rating
+      if @resource.rate_it(params, current_user)
         redirect_to category_subject_resource_path(@resource.category, @resource.subject, @resource), notice: "Thanks for voting!"
+      else
+        redirect_to :back, notice: "Ratings must be between 1 and 10!"
       end
     end
   end
@@ -61,17 +58,19 @@ class ResourcesController < ApplicationController
 
   def show
     @resource = Resource.find(params[:id])
+    @usability_rating = (@resource.ratings.map(&:usability_rating).inject(0, :+))/ @resource.ratings.where.not(usability_rating: nil).count
+    @addictiveness_rating = (@resource.ratings.map(&:addictive_rating).inject(0, :+))/ @resource.ratings.where.not(addictive_rating: nil).count
   end
 
 
   private
 
-  def usability_ratings
-    params[:resource][:usability_ratings].to_i
+  def usability_rating
+    params[:resource][:rating][:usability_rating].to_i
   end
 
-  def addictive_ratings
-    params[:resource][:addictive_ratings].to_i
+  def addictive_rating
+    params[:resource][:rating][:addictive_rating].to_i
   end
 
   def resource_params

@@ -19,17 +19,27 @@ ActiveRecord::Schema.define(version: 5) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "ratings", force: :cascade do |t|
+    t.integer  "resource_id"
+    t.integer  "user_id"
+    t.integer  "usability_rating"
+    t.integer  "addictive_rating"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
+  add_index "ratings", ["resource_id"], name: "index_ratings_on_resource_id"
+  add_index "ratings", ["user_id"], name: "index_ratings_on_user_id"
+
   create_table "resources", force: :cascade do |t|
     t.string   "name"
     t.string   "url"
     t.string   "description"
     t.integer  "subject_id"
     t.integer  "user_id"
-    t.datetime "created_at",                       null: false
-    t.datetime "updated_at",                       null: false
-    t.text     "usability_ratings", default: "{}"
-    t.text     "addictive_ratings", default: "{}"
     t.decimal  "price_per_month"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
 
   create_table "subjects", force: :cascade do |t|
