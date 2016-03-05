@@ -48,4 +48,10 @@ class Category < ActiveRecord::Base
   def self.tree_params_new_cat_and_new_sub(params)
     params.require(:category).permit(:name, :subjects_attributes => [:name, :user_id, :resources_attributes => [:name,:url,:description,:subject_id, :user_id, :price_per_month]])
   end
+
+
+  def class_name
+    self.class.name
+  end
+
 end

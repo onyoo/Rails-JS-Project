@@ -42,10 +42,18 @@ class SubjectsController < ApplicationController
   def index
     new_subject_with_cat
     @subjects = Subject.order("name ASC")
+    respond_to do |format|
+      format.html { render :index }
+      format.json { render json: @subjects }
+    end
   end
 
   def show
     @subject = Subject.find(params[:id])
+    respond_to do |format|
+      format.html { render :show }
+      format.json { render json: @subject }
+    end
   end
 
 

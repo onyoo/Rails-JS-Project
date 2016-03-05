@@ -38,4 +38,9 @@ class User < ActiveRecord::Base
     @user
   end
 
+
+  def class_name
+    self.class.name
+  end
+
 end

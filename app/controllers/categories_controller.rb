@@ -35,10 +35,18 @@ class CategoriesController < ApplicationController
 
   def index
     @categories = Category.order("name ASC")
+    respond_to do |format|
+      format.html { render :index }
+      format.json { render json: @categories }
+    end
   end
 
   def show
     @category = Category.find(params[:id])
+    respond_to do |format|
+      format.html { render :index }
+      format.json { render json: @category }
+    end
   end
 
 # #plant_tree & grow_tree should be #new and #create actions of different controller with model

@@ -54,6 +54,7 @@ group :development, :test do
   # gem 'capybara-webkit'
   gem 'pry'
   gem 'database_cleaner'
+  gem 'active_model_serializers'
 
 end
 

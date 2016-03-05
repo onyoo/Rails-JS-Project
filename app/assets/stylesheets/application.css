@@ -40,6 +40,17 @@ body {
 
 }
 
+.home_col {
+  display: table-cell;
+  height: 100%;
+  width: 32.9%;
+}
+
+#wrapper {
+  width: 100%;
+  display: table;
+}
+
 #content {
   background-color: #F4F5F9;
   margin: 100px 3% 0;

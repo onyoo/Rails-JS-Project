@@ -1,21 +1,36 @@
 <h1>Welcome to LARGE! The Learning Resource Guide!</h1>
+<div id="wrapper">
+  <div id='col_1' class='home_col'>
+    <div id="categories_index">
+      <%= link_to 'Categories', categories_path %>
+    </div>
 
-<div id="categories_index">
-  <%= link_to 'Categories', categories_path %>
-</div>
+    <div id="subject_index">
+      <%= link_to 'Subjects', home_subjects_path %>
+    </div>
 
-<div id="subject_index">
-  <%= link_to 'Subjects', home_subjects_path %>
-</div>
+    <div id="resource_index">
+      <%= link_to 'Resources', resources_path %>
+    </div>
 
-<div id="resource_index">
-  <%= link_to 'Resources', resources_path %>
-</div>
+    <div id="users_index">
+      <%= link_to 'Users', users_path %>
+    </div>
+    <br><br>
+  </div> <!-- col-1 -->
 
-<div id="users_index">
-  <%= link_to 'Users', users_path %>
-</div>
-<br><br>
+  <div id='col_2' class='home_col'>
+    <ul id="col_2_list">
+
+    </ul>
+  </div> <!-- col-2 -->
+
+  <div id='col_3' class='home_col'>
+    <ul id="col_3_list">
+      
+    </ul>
+  </div> <!-- col-3 -->
+</div> <!-- wrapper -->
 
 <p>Be a power-user!</p>
 

@@ -54,6 +54,10 @@ class ResourcesController < ApplicationController
 
   def index
     @resources = Resource.order("name ASC")
+    respond_to do |format|
+      format.html { render :index }
+      format.json { render json: @resources }
+    end
   end
 
   def show

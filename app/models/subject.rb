@@ -8,5 +8,8 @@ class Subject < ActiveRecord::Base
 
   accepts_nested_attributes_for :resources
 
+  def class_name
+    self.class.name
+  end
 
 end

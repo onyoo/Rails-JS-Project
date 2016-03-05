@@ -14,3 +14,52 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+$(document).ready(function() {
+  clickListeners();
+});
+
+
+function clickListeners() {
+  $('a[href$="categories"]').on('click', function(event) {
+    event.preventDefault();
+    sendAjax(event);
+  });
+
+  $('a[href$="subjects"]').on('click', function(event) {
+    event.preventDefault();
+    sendAjax(event);
+  });
+
+  $('a[href$="resources"]').on('click', function(event) {
+    event.preventDefault();
+    sendAjax(event);
+  });
+
+  $('a[href$="users"]').on('click', function(event) {
+    event.preventDefault();
+    sendAjax(event);
+  });
+
+///////////////////////////////////////
+
+  $(document.body).on('click', '.index_link', function(event) {
+    event.preventDefault();
+    sendAjax(event);
+  });
+
+}
+
+function sendAjax(event) {
+  var url = event.toElement.href;
+
+  $.getJSON({
+    url: url,
+  }).done(function(response) {
+  if(event.toElement.className != 'index_link') {
+    loadIndexResponse(response);
+  }else{
+    loadCol2(response);
+  }
+  });
+}

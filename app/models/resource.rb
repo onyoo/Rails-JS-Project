@@ -18,4 +18,8 @@ class Resource < ActiveRecord::Base
       )
   end
 
+  def class_name
+    self.class.name
+  end
+
 end

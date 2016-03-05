@@ -16,6 +16,6 @@
 @subject_2 = Subject.create(name: "Español", category_id: @category_1.id, user_id: @user_2.id)
 
 
-@resource_1 = Resource.create(name: "TTMIK", url: "ttmik.com", description: "Grammar lessons, and sample dialogues.", subject_id: @subject_1.id, user_id: @user_1.id)
+@resource_1 = Resource.create(name: "TTMIK", url: "www.ttmik.com", description: "Grammar lessons, and sample dialogues.", subject_id: @subject_1.id, user_id: @user_1.id)
 @resource_2 = Resource.create(name: "Naver Dictionary", url: "dic.naver.com", description: "Dictionary.", subject_id: @subject_1.id, user_id: @user_1.id)
-@resource_3 = Resource.create(name: "NIS", url: "https://www.notesinspanish.com", description: "Listen to Ben and Marina.", subject_id: @subject_2.id, user_id: @user_2.id)
+@resource_3 = Resource.create(name: "NIS", url: "www.notesinspanish.com", description: "Listen to Ben and Marina.", subject_id: @subject_2.id, user_id: @user_2.id)
