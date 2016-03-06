@@ -17,6 +17,7 @@
 
 $(document).ready(function() {
   clickListeners();
+  hideHeaderLinks();
 });
 
 
@@ -41,13 +42,26 @@ function clickListeners() {
     sendAjax(event);
   });
 
-///////////////////////////////////////
+  $(document.body).on('click', '#back', function(event) {
+    location.reload(true);
+  });
 
+  // $(document.body).on('click', 'a#home', function(event) {
+  //   event.preventDefault();
+  //   location.reload(true);
+  // });
+
+///////////////////////////////////////
+// col_2
   $(document.body).on('click', '.index_link', function(event) {
     event.preventDefault();
     sendAjax(event);
   });
-
+// col_3
+  $(document.body).on('click', '.col_2_link', function(event) {
+    event.preventDefault();
+    sendAjax(event);
+  });
 }
 
 function sendAjax(event) {
@@ -56,10 +70,17 @@ function sendAjax(event) {
   $.getJSON({
     url: url,
   }).done(function(response) {
-  if(event.toElement.className != 'index_link') {
-    loadIndexResponse(response);
-  }else{
-    loadCol2(response);
-  }
+
+    if(event.toElement.className == '') {
+      loadIndexResponse(response);
+    }else if (event.toElement.className.includes('index_link')){
+      loadCol2(response);
+    }else{
+      loadCol3(response);
+    }
   });
+}
+
+function hideHeaderLinks() {
+  $('a#home').css('display','none');
 }

@@ -41,9 +41,37 @@ body {
 }
 
 .home_col {
-  display: table-cell;
+  display: none;
   height: 100%;
   width: 32.9%;
+}
+
+.js_objects {
+  font-weight: bold;
+  font-size: 1.5em;
+  font-family: 'Josefin Sans', sans-serif;
+  text-align: center;
+  padding-top: .4em;
+  padding-bottom: .7em;
+  width: 100%;
+  border-radius: 5px;
+  position: relative;
+  margin-bottom: .18em;
+
+  background: #c9c9c9;
+  background: -moz-linear-gradient(top,  #c9c9c9 0%, #e5e5e5 0%, #e5e5e5 62%, #c9c9c9 100%);
+  background: -webkit-linear-gradient(top,  #c9c9c9 0%,#e5e5e5 0%,#e5e5e5 62%,#c9c9c9 100%);
+  background: linear-gradient(to bottom,  #c9c9c9 0%,#e5e5e5 0%,#e5e5e5 62%,#c9c9c9 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c9c9c9', endColorstr='#c9c9c9',GradientType=0 );
+
+
+  display: inline-block;
+  vertical-align: center;
+}
+
+#right, #left {
+  width: 49.6%;
+  display: inline-block;
 }
 
 #wrapper {
