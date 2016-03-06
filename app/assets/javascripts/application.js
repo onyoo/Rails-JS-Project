@@ -67,14 +67,19 @@ function clickListeners() {
     event.preventDefault();
   });
 /////////////////////
-  // $('#build_tree').on('click', function(event) {
-  //   requestForm(event);
-  //   event.preventDefault();
-  // });
+  $('#build_tree').on('click', function(event) {
+    requestForm(event);
+    event.preventDefault();
+  });
 
   $(document.body).on('click', '#submit_form', function(event) {
-    sendForm(event, $('form#new_category').attr('action'));
+    sendForm($('form'));
     event.preventDefault();
+  });
+
+  $(document.body).on('click', 'a.edit', function(event) {
+    event.preventDefault();
+    requestForm(event);
   });
 }
 
@@ -110,39 +115,47 @@ function requestForm(event) {
 
 }
 
-function sendForm(event, path) {
-  data = {
-    'authenticity_token': $('input[name="authenticity_token"]').attr('value'),
-    'category': {
-      'name': $('input[id="category_name"]').val(),
-      'id': $('select[id="category_id"]').val(),
-      'subjects_attributes': {
-        '0': {
-          'name': $('input[id="category_subjects_attributes_0_name"]').val(),
-          'user_id': $('#subject_user_id'),
-          'id': $('select[id="category_subjects_attributes_0_id"]').val(),
-          'resources_attributes': {
-            '0': {
-              'name': $('input[id="category_subjects_attributes_0_resources_attributes_0_name"]').val(),
-              'url': $('input[id="category_subjects_attributes_0_resources_attributes_0_url"]').val(),
-              'description': $('input[id="category_subjects_attributes_0_resources_attributes_0_description"]').text(),
-              'price_per_month': $('input[id="category_subjects_attributes_0_resources_attributes_0_price_per_month"]').val(),
-              'user_id': $('#resource_user_id')
-            }
-          }
-        }
-      }
-    }
-  }
-  debugger;
+function sendForm(form) {
+  data = form.serialize();
+  // {
+     // look to call $(form).serialize
+
+    // 'authenticity_token': $('input[name="authenticity_token"]').attr('value'),
+    // 'category': {
+    //   'name': $('input[id="category_name"]').val(),
+    //   'id': $('select[id="category_id"]').val(),
+    //   'subjects_attributes': {
+    //     '0': {
+    //       'name': $('input[id="category_subjects_attributes_0_name"]').val(),
+    //       'user_id': $('#subject_user_id').val(),
+    //       'id': $('select[id="category_subjects_attributes_0_id"]').val(),
+    //       'resources_attributes': {
+    //         '0': {
+    //           'name': $('input[id="category_subjects_attributes_0_resources_attributes_0_name"]').val(),
+    //           'url': $('input[id="category_subjects_attributes_0_resources_attributes_0_url"]').val(),
+    //           'description': $('input[id="category_subjects_attributes_0_resources_attributes_0_description"]').text(),
+    //           'price_per_month': $('input[id="category_subjects_attributes_0_resources_attributes_0_price_per_month"]').val(),
+    //           'user_id': $('#resource_user_id').val()
+    //         }
+    //       }
+    //     }
+    //   }
+    // }
+  // }
+
   $.ajax({
     type: 'post',
-    url: path,
+    url: form.attr('action'),
     data: data,
     success: function(response){
-      debugger;
+      refreshPage();
     }
   })
+}
+
+function refreshPage() {
+  location.reload(true);
+  alert("Thanks for making the community better!");
 }
 
 function hideHeaderLinks() {

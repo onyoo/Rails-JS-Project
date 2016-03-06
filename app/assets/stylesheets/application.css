@@ -82,6 +82,18 @@ body {
   background: DarkGrey;
 }
 
+.edit {
+  font-size: .5em;
+  font-family: 'Josefin Sans', sans-serif;
+  text-align: center;
+  padding-top: .2em;
+  padding-bottom: .3em;
+  width: 100%;
+  border-radius: 5px;
+  position: relative;
+  background: DarkGrey;
+}
+
 #right, #left {
   width: 49.6%;
   display: inline-block;

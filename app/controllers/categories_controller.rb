@@ -16,6 +16,10 @@ class CategoriesController < ApplicationController
 
   def edit
     @category = Category.find(params[:id])
+    respond_to do |format|
+      format.html { render :edit }
+      format.json { render json: @category }
+    end
   end
 
   def update
@@ -25,7 +29,10 @@ class CategoriesController < ApplicationController
     else
       @category = Category.find(params[:id])
       @category.update(category_params)
-      redirect_to category_path(@category), notice: "Successfully updated. Thanks!"
+      respond_to do |format|
+        format.html { redirect_to category_path(@category), notice: "Successfully updated. Thanks!" }
+        format.json { render json: @category }
+      end
     end
   end
 
@@ -64,9 +71,12 @@ class CategoriesController < ApplicationController
 
   def grow_tree
     if Category.create_correct_associations(params)
-      binding.pry
       @resource = Resource.last
-      redirect_to category_subject_resource_path(@resource.category, @resource.subject, @resource), message: "Masterful creation!"
+      binding.pry
+      # respond_to do |format|
+      #   format.html { redirect_to category_subject_resource_path(@resource.category, @resource.subject, @resource), message: "Masterful creation!" }
+      #   format.json { render json: @resource }
+      # end
     else
       redirect_to tree_path, message: "There was a problem"
     end

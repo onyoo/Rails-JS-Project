@@ -22,7 +22,7 @@
   <%= f.label :_destroy, "Delete Account: " %>
   <%= f.check_box :_destroy %>
 
-  <%= f.submit "Submit Edits", class: "btn-submit" %>
+  <%= f.submit "Submit Edits", class: "btn-submit" id: 'submit_form' %>
 <% else %>
-  <%= f.submit "Create an account", class: "btn-submit" %>
+  <%= f.submit "Create an account", class: "btn-submit" id: 'submit_form' %>
 <% end %>

@@ -35,15 +35,23 @@ function createListItem(object) {
   var path = pathSetter( object, class_name );
 
   if( class_name == 'resources' ) {
-    return('<a class="js_objects" href="http://' + object.url + '">' + object.name + '</a>');
+    return('<p class="js_objects">' + object.name + '</p>')
+    // return('<a class="js_objects" href="http://' + object.url + '">' + object.name + '</a>');
   }else if( class_name != 'users' ) {
+    var className = classNameSetter(object.class_name.toLowerCase() );
     var return_var;
+    // for subjects and categories list items
+    if (className == 'categories') {
+      return_var = ('id="' + object.id + '" href="/' + path + '">' + object.name + '</a>' + '<a class="edit" id="' + object.id + '" href="/' + className + '/' + object.id + '/edit' + '" >Edit ' + object.name + ' <br>(for Legend & Master only)</a>');
+    }else if(className == 'subjects'){
+      return_var = ('id="' + object.id + '" href="/' + path + '">' + object.name + '</a>' + '<a class="edit" id="' + object.id + '" href="/categories/' + object.category_id + '/' + className + '/' + object.id + '/edit' + '" >Edit ' + object.name + ' <br>(for Legend & Master only)</a>');
+    }
 
     // checks length of path to attach correct id for event listeners
     if( path.match(/\//g).length < 3 ) {
-      return_var = ('<a class="index_link js_objects" id="' + object.id + '" href="/' + path + '">' + object.name + '</a>');
+      return_var = ('<a class="index_link js_objects" ' + return_var);
     }else{
-      return_var = ('<a class="col_2_link js_objects" id="' + object.id + '" href="/' + path + '">' + object.name + '</a>');
+      return_var = ('<a class="col_2_link js_objects" ' + return_var);
     }
     return return_var;
   }else{
