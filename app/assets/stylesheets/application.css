@@ -92,6 +92,13 @@ body {
   display: table;
 }
 
+#form {
+  position: absolute;
+  display: none;
+  top: 0em;
+  width: 100%;
+}
+
 #content {
   background-color: #F4F5F9;
   margin: 100px 3% 0;

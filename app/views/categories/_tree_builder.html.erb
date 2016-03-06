@@ -1,3 +1,4 @@
+<div id="tree_form">
 <% if can? :edit, @category %>
   <%= label_tag(:name, "New Category By Name") %>
   <%= f.text_field :name %>
@@ -16,7 +17,7 @@
         <%= label_tag(:name, "New Subject By Name") %>
         <%= subject.text_field :name %>
 
-        <%= subject.hidden_field :user_id, value: current_user.id %>
+        <%= subject.hidden_field :user_id, value: current_user.id, id: "subject_user_id" %>
         or select existing
 
         <%= subject.collection_select :id, @subjects, :id, :name, :include_blank => true %>
@@ -46,10 +47,11 @@
                 <td><%= resource.number_field :price_per_month %></td>
               </tr>
             </table>
-            <%= resource.hidden_field :user_id, value: current_user.id %>
+            <%= resource.hidden_field :user_id, value: current_user.id, id: "resource_user_id" %>
           </div> <!-- resource_tree -->
         <% end %> <!-- fields_for :resource -->  <br>
 
   <% end %> <!-- fields_for :subject -->
-  <%= f.submit %>
+  <%= f.submit id: 'submit_form' %>
 <% end %>
+</div>

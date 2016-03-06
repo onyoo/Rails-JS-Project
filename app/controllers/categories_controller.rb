@@ -56,11 +56,15 @@ class CategoriesController < ApplicationController
     subject.resources.build
     @categories = Category.all
     @subjects = Subject.all
-    render 'new'
+    respond_to do |format|
+      format.html { render 'new' }
+      format.json { render '_tree_builder', layout: false }
+    end
   end
 
   def grow_tree
     if Category.create_correct_associations(params)
+      binding.pry
       @resource = Resource.last
       redirect_to category_subject_resource_path(@resource.category, @resource.subject, @resource), message: "Masterful creation!"
     else

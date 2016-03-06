@@ -56,15 +56,25 @@ function clickListeners() {
   $(document.body).on('click', '.index_link', function(event) {
     $('.index_link').css('background', '#c9c9c9')
     $(event.toElement).css('background','LightSkyBlue');
-    event.preventDefault();
     sendAjax(event);
+    event.preventDefault();
   });
 // col_3
   $(document.body).on('click', '.col_2_link', function(event) {
     $('.col_2_link').css('background', '#c9c9c9')
     $(event.toElement).css('background', 'LightSkyBlue');
-    event.preventDefault();
     sendAjax(event);
+    event.preventDefault();
+  });
+/////////////////////
+  // $('#build_tree').on('click', function(event) {
+  //   requestForm(event);
+  //   event.preventDefault();
+  // });
+
+  $(document.body).on('click', '#submit_form', function(event) {
+    sendForm(event, $('form#new_category').attr('action'));
+    event.preventDefault();
   });
 }
 
@@ -83,6 +93,56 @@ function sendAjax(event) {
       loadCol3(response);
     }
   });
+}
+
+function requestForm(event) {
+  var url = event.toElement.href;
+  var form_html;
+  var jqhr = $.get(url, function(data) {
+
+    $(document.body).append('<div id="form"></div>');
+    form_html = $(data)[45]; // must be better way to parse data object.
+    $('div#form').append(data);
+
+    $('div#form').show(200);
+
+  });
+
+}
+
+function sendForm(event, path) {
+  data = {
+    'authenticity_token': $('input[name="authenticity_token"]').attr('value'),
+    'category': {
+      'name': $('input[id="category_name"]').val(),
+      'id': $('select[id="category_id"]').val(),
+      'subjects_attributes': {
+        '0': {
+          'name': $('input[id="category_subjects_attributes_0_name"]').val(),
+          'user_id': $('#subject_user_id'),
+          'id': $('select[id="category_subjects_attributes_0_id"]').val(),
+          'resources_attributes': {
+            '0': {
+              'name': $('input[id="category_subjects_attributes_0_resources_attributes_0_name"]').val(),
+              'url': $('input[id="category_subjects_attributes_0_resources_attributes_0_url"]').val(),
+              'description': $('input[id="category_subjects_attributes_0_resources_attributes_0_description"]').text(),
+              'price_per_month': $('input[id="category_subjects_attributes_0_resources_attributes_0_price_per_month"]').val(),
+              'user_id': $('#resource_user_id')
+            }
+          }
+        }
+      }
+    }
+  }
+  debugger;
+  $.ajax({
+    type: 'post',
+    url: path,
+    data: data,
+    success: function(response){
+      debugger;
+    }
+  })
 }
 
 function hideHeaderLinks() {
