@@ -54,11 +54,15 @@ function clickListeners() {
 ///////////////////////////////////////
 // col_2
   $(document.body).on('click', '.index_link', function(event) {
+    $('.index_link').css('background', '#c9c9c9')
+    $(event.toElement).css('background','LightSkyBlue');
     event.preventDefault();
     sendAjax(event);
   });
 // col_3
   $(document.body).on('click', '.col_2_link', function(event) {
+    $('.col_2_link').css('background', '#c9c9c9')
+    $(event.toElement).css('background', 'LightSkyBlue');
     event.preventDefault();
     sendAjax(event);
   });

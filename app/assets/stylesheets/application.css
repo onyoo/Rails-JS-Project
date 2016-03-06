@@ -58,6 +58,7 @@ body {
   position: relative;
   margin-bottom: .18em;
 
+
   background: #c9c9c9;
   background: -moz-linear-gradient(top,  #c9c9c9 0%, #e5e5e5 0%, #e5e5e5 62%, #c9c9c9 100%);
   background: -webkit-linear-gradient(top,  #c9c9c9 0%,#e5e5e5 0%,#e5e5e5 62%,#c9c9c9 100%);
@@ -67,6 +68,18 @@ body {
 
   display: inline-block;
   vertical-align: center;
+}
+
+#back {
+  font-size: 1em;
+  font-family: 'Josefin Sans', sans-serif;
+  text-align: center;
+  padding-top: .2em;
+  padding-bottom: .3em;
+  width: 100%;
+  border-radius: 5px;
+  position: relative;
+  background: DarkGrey;
 }
 
 #right, #left {
