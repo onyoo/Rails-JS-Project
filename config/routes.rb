@@ -26,8 +26,8 @@ Rails.application.routes.draw do
   post 'login' => 'sessions#create'
   get 'logout' => 'sessions#destroy'
 
-  get 'tree_builder/new' => 'categories#plant_tree', as: "tree"
-  post 'tree_builder/new' => 'categories#grow_tree', as: "grow"
+  get 'tree_builder/new' => 'tree_builders#new', as: "tree"
+  post 'tree_builder/new' => 'tree_builders#create', as: "grow"
 
   get '/auth/facebook', as: 'facebook_login'
   get 'auth/:provider/callback', to: 'sessions#create'

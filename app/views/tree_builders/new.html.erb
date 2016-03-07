@@ -1,0 +1,9 @@
+<% if can? :edit, @category %>
+  Use this great power with care!!
+
+  <%= form_for @category, url: "/tree_builder/new", method: "post" do |f| %>
+    <%= render partial: "tree_builder", locals: {f: f} %>
+  <% end %>
+<% else %>
+  <strong>Sorry, this section is reserved for "Legends" and "Grand Masters". You can still create manually, which has the same effect!</strong>
+<% end %>

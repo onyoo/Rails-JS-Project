@@ -4,6 +4,7 @@ function loadCol2(response) {
   (response.category.subjects).forEach( function(subject) {
     $('#col_2').append(createListItem(subject));
   })
+  appendCreateButton('#col_2', response);
 }
 
 function clearCol2() {

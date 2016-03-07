@@ -56,31 +56,7 @@ class CategoriesController < ApplicationController
     end
   end
 
-# #plant_tree & grow_tree should be #new and #create actions of different controller with model
-  def plant_tree
-    @category = Category.new
-    subject = @category.subjects.build
-    subject.resources.build
-    @categories = Category.all
-    @subjects = Subject.all
-    respond_to do |format|
-      format.html { render 'new' }
-      format.json { render '_tree_builder', layout: false }
-    end
-  end
 
-  def grow_tree
-    if Category.create_correct_associations(params)
-      @resource = Resource.last
-      binding.pry
-      # respond_to do |format|
-      #   format.html { redirect_to category_subject_resource_path(@resource.category, @resource.subject, @resource), message: "Masterful creation!" }
-      #   format.json { render json: @resource }
-      # end
-    else
-      redirect_to tree_path, message: "There was a problem"
-    end
-  end
 
   private
 

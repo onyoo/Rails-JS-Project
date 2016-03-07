@@ -6,7 +6,7 @@
 
     <%= f.collection_select :id, @categories, :id, :name, :include_blank => true %>
       <br><br>
-      <datalist>
+      <datalist id='categories_datalist'>
         <% Category.all.each do |category| %>
           <option name="<%=category.id%>" value="<%=category.name%>"></option>
         <% end %>
@@ -22,9 +22,9 @@
 
         <%= subject.collection_select :id, @subjects, :id, :name, :include_blank => true %>
           <br><br>
-          <datalist>
+          <datalist id='subjects_datalist'>
             <% Subject.all.each do |subject| %>
-              <option name="<%=subject.name%>" value="<%=subject.name%>"></option>
+              <option name="<%=subject.name%>" value="<%=subject.name%>" cat_id="<%=subject.category_id%>"></option>
             <% end %>
           </datalist>
 

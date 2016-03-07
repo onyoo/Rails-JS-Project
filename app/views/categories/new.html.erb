@@ -6,19 +6,8 @@
 
   <div class="form">
 
-    <% if (!request.referrer.end_with? home_path) && (!request.env["REQUEST_URI"].end_with?("tree_builder/new")) %>
-      <%= form_for @category do |f| %>
-        <%= render partial: "application/form", locals: {f: f} %>
-      <% end %>
-    <% else %>
-      <% if can? :edit, @category %>
-        Use this great power with care!!
-
-        <%= form_for @category, url: "/tree_builder/new", method: "post" do |f| %>
-          <%= render partial: "tree_builder", locals: {f: f} %>
-        <% end %>
-      <% else %>
-        <strong>Sorry, this section is reserved for "Legends" and "Grand Masters". You can still create manually, which has the same effect!</strong>
-      <% end %>
+    <%= form_for(@category, remote: true) do |f| %>
+      <%= render partial: "application/form", locals: {f: f} %>
     <% end %>
+
   </div>

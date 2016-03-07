@@ -11,11 +11,8 @@ class Resource < ActiveRecord::Base
   accepts_nested_attributes_for :ratings
 
   def rate_it(params, user)
-    rating = self.ratings.find_or_create_by( user_id: user.id, resource_id: self.id )
-    rating.update(
-      usability_rating: params[:resource][:rating][:usability_rating],
-      addictive_rating: params[:resource][:rating][:addictive_rating]
-      )
+    rating = Rating.find_or_create_by( user_id: user.id, resource_id: self.id )
+    rating.update(usability_rating: params[:resource][:rating][:usability_rating], addictive_rating: params[:resource][:rating][:addictive_rating])
   end
 
   def class_name

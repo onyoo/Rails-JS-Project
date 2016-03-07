@@ -62,13 +62,13 @@ class ResourcesController < ApplicationController
 
   def show
     @resource = Resource.find(params[:id])
-    unless @resource.ratings = []
+    unless @resource.ratings == []
       @usability_rating = (@resource.ratings.map(&:usability_rating).inject(0, :+))/ @resource.ratings.where.not(usability_rating: nil).count
       @addictiveness_rating = (@resource.ratings.map(&:addictive_rating).inject(0, :+))/ @resource.ratings.where.not(addictive_rating: nil).count
     end
     respond_to do |format|
       format.html { render :show }
-      format.json { render json: @resources }
+      format.json { render json: @resource }
     end
   end
 
