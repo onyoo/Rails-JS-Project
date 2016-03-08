@@ -1,3 +1,4 @@
+# Category relations, validations, form macros, updates status before actions
 class User < ActiveRecord::Base
 
   has_secure_password

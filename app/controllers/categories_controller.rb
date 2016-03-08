@@ -20,17 +20,11 @@ class CategoriesController < ApplicationController
   end
 
   def update
-    binding.pry
-    if params[:category][:_destroy] == "1"
-      destroy
-      redirect_to categories_path, notice: "Successfully deleted."
-    else
-      @category = Category.find(params[:id])
-      @category.update(category_params)
-      respond_to do |format|
-        format.html { redirect_to category_path(@category), notice: "Successfully updated. Thanks!" }
-        format.json { render json: @category }
-      end
+    @category = Category.find(params[:id])
+    @category.update(category_params)
+    respond_to do |format|
+      format.html { redirect_to category_path(@category), notice: "Successfully updated. Thanks!" }
+      format.json { render json: @category }
     end
   end
 

@@ -1,3 +1,4 @@
+# Detects correct nested form config, and builds Category, Subject, and Resource
 class TreeBuilder
 
   def self.create_correct_associations(params)

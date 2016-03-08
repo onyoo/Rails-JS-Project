@@ -1,3 +1,4 @@
+# Category relations, validations, form macros, and ratings setter
 class Resource < ActiveRecord::Base
 
   belongs_to :user

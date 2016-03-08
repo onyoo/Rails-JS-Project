@@ -31,13 +31,8 @@ class ResourcesController < ApplicationController
     @resource = Resource.find(params[:id])
 
     if params[:resource][:name]
-      if params[:resource][:_destroy] == "1"
-        @resource.destroy
-        redirect_to category_subject_path(@subject.category, @subject), notice: "Successfully deleted."
-      else
         @resource.update(resource_params)
         redirect_to category_subject_resource_path(@resource.category, @resource.subject, @resource), notice: "Successfully updated. Thanks!"
-      end
     elsif addictive_rating || usability_rating
       if @resource.rate_it(params, current_user)
         redirect_to category_subject_resource_path(@resource.category, @resource.subject, @resource), notice: "Thanks for voting!"
@@ -50,7 +45,7 @@ class ResourcesController < ApplicationController
   def destroy
     @subject = Resource.find(params[:id]).subject
     Resource.delete(params[:id])
-    redirect_to category_subject_path(@subject)
+    redirect_to category_subject_path(@subject.category,@subject)
   end
 
   def index

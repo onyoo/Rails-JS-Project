@@ -1,3 +1,4 @@
+# Category relations, validations, form macros
 class Category < ActiveRecord::Base
   has_many :subjects, dependent: :destroy, inverse_of: :category
   has_many :users, through: :subjects

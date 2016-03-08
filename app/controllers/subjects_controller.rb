@@ -25,14 +25,9 @@ class SubjectsController < ApplicationController
   end
 
   def update
-    if params[:subject][:_destroy] == "1"
-      destroy
-      redirect_to category_path(@category), notice: "Successfully deleted."
-    else
-      @subject = Subject.find(params[:id])
-      @subject.update(subject_params)
-      redirect_to category_subject_path(@subject.category, @subject), notice: "Update successful. Thanks!"
-    end
+    @subject = Subject.find(params[:id])
+    @subject.update(subject_params)
+    redirect_to category_subject_path(@subject.category, @subject), notice: "Update successful. Thanks!"
   end
 
   def destroy

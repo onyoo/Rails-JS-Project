@@ -1,3 +1,4 @@
+# Manages users authorization
 class Ability
   include CanCan::Ability
 
