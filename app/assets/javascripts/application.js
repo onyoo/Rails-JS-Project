@@ -61,8 +61,8 @@ function sendForm(form) {
     url: form.attr('action'),
     data: data,
     success: function(response){
-      alert("Thanks for making the community better!");
       refreshPage();
+      alert("Thanks for making the community better!");
     }
   });
 }
@@ -72,7 +72,7 @@ function refreshPage() {
 }
 
 function appendCreateButton(columnId, response) {
-  if(columnId == "#col_1") {
+  if((columnId == "#col_1") && (response.users == undefined)) {
     $(columnId).append('<div class="new_object"><a href="/categories/new" class="new_object_link">New!</a></div>');
   }else if(columnId == "#col_2") {
     $(columnId).append('<div class="new_object"><a href="/categories/' + response.category.id + '/subjects/new" class="new_object_link">New!</a></div>');
@@ -92,7 +92,7 @@ function changeBackground(color) {
 
 function addCloseButton(form) {
   var img_src = 'assets/close_button.png'
-  debugger;
+
   if(form) {
     $('#form #content').prepend('<img id="close_button" src="'+ img_src +'" />');
   }

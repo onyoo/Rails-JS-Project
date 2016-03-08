@@ -13,8 +13,8 @@
 
 <%= render partial: "index", locals: {
   resource: @resource,
-  usability_rating: @usability_rating,
-  addictiveness_rating: @addictiveness_rating
+  usability_rating: calc_usability_rating,
+  addictiveness_rating: calc_addictiveness_rating
   } %>
 
 <br>

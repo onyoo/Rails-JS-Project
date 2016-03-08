@@ -1,3 +1,4 @@
+# Views helper methods to clean-up logic in resources views
 module ResourcesHelper
 
 
@@ -22,5 +23,18 @@ module ResourcesHelper
       }
     end
   end
+
+  def calc_usability_rating
+    unless @resource.ratings == []
+      (@resource.ratings.map(&:usability_rating).inject(0, :+))/ @resource.ratings.where.not(usability_rating: nil).count
+    end
+  end
+
+  def calc_addictiveness_rating
+    unless @resource.ratings == []
+      (@resource.ratings.map(&:addictive_rating).inject(0, :+))/ @resource.ratings.where.not(addictive_rating: nil).count
+    end
+  end
+
 
 end

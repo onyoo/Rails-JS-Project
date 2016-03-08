@@ -1,3 +1,4 @@
+# Manages coordination of logic between views and model for the deep nested form (touches Category, Subject, Resource)
 class TreeBuildersController < ApplicationController
 
   def new

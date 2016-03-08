@@ -1,3 +1,4 @@
+# Manages sessions for users
 class SessionsController < ApplicationController
 
   def new

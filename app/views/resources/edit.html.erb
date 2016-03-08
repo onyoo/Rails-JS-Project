@@ -4,6 +4,11 @@
   <%= render partial: "application/edit_object_instructions", locals: { object: @resource } %>
 
   <%= form_for [@resource.category, @resource.subject, @resource], url: edit_resource_path(@resource.category, @resource.subject, @resource), remote: true do |f| %>
+  <% if can? :delete, @resource %>
+    <div class="destroy">
+      <%= link_to 'Destroy',  category_subject_resource_path(@resource.category,@resource.subject,@resource),  method: :delete, data: { confirm: 'Are you sure?' } %>
+    </div>
+  <% end %>
     <%= render partial: "application/form", locals: {f: f, subject_id: @resource.subject_id } %>
   <% end %>
 <% end %>

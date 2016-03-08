@@ -6,6 +6,11 @@
   <div class="form">
 
     <%= form_for @category do |f| %>
+    <% if can? :delete, @category %>
+      <div class="destroy">
+        <%= link_to 'Destroy',  @category,  method: :delete, data: { confirm: 'Are you sure?' } %>
+      </div>
+    <% end %>
       <%= render partial: "application/form", locals: {f: f} %>
     <% end %>
 

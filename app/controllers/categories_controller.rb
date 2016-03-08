@@ -1,3 +1,4 @@
+# Manages coordination of logic between views and model for categories
 class CategoriesController < ApplicationController
   before_action :require_user, only: [:index, :show]
 
@@ -16,13 +17,10 @@ class CategoriesController < ApplicationController
 
   def edit
     @category = Category.find(params[:id])
-    respond_to do |format|
-      format.html { render :edit }
-      format.json { render json: @category }
-    end
   end
 
   def update
+    binding.pry
     if params[:category][:_destroy] == "1"
       destroy
       redirect_to categories_path, notice: "Successfully deleted."
@@ -38,12 +36,13 @@ class CategoriesController < ApplicationController
 
   def destroy
     Category.destroy(params[:id])
+    redirect_to categories_path
   end
 
   def index
     @categories = Category.order("name ASC")
     respond_to do |format|
-      format.html { render :index }
+      format.html { render :index };
       format.json { render json: @categories }
     end
   end

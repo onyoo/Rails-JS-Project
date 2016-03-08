@@ -61,10 +61,10 @@ function clickListeners() {
   $(document.body).on('click', '#submit_form', function(event) {
     sendForm($('form'));
     event.preventDefault();
+    event.stopPropagation();
   });
 
   $(document.body).on('click', 'a.edit', function(event) {
-    debugger;
     event.preventDefault();
     requestForm(event);
   });

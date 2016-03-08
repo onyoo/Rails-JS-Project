@@ -1,3 +1,4 @@
+# Manages coordination of logic between views and model for resources
 class ResourcesController < ApplicationController
   before_action :require_user, only: [:index, :show]
 
@@ -34,7 +35,6 @@ class ResourcesController < ApplicationController
         @resource.destroy
         redirect_to category_subject_path(@subject.category, @subject), notice: "Successfully deleted."
       else
-
         @resource.update(resource_params)
         redirect_to category_subject_resource_path(@resource.category, @resource.subject, @resource), notice: "Successfully updated. Thanks!"
       end
@@ -50,6 +50,7 @@ class ResourcesController < ApplicationController
   def destroy
     @subject = Resource.find(params[:id]).subject
     Resource.delete(params[:id])
+    redirect_to category_subject_path(@subject)
   end
 
   def index
@@ -62,10 +63,6 @@ class ResourcesController < ApplicationController
 
   def show
     @resource = Resource.find(params[:id])
-    unless @resource.ratings == []
-      @usability_rating = (@resource.ratings.map(&:usability_rating).inject(0, :+))/ @resource.ratings.where.not(usability_rating: nil).count
-      @addictiveness_rating = (@resource.ratings.map(&:addictive_rating).inject(0, :+))/ @resource.ratings.where.not(addictive_rating: nil).count
-    end
     respond_to do |format|
       format.html { render :show }
       format.json { render json: @resource }

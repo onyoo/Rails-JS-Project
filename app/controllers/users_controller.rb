@@ -1,3 +1,4 @@
+# Manages coordination of logic between views and model for users
 class UsersController < ApplicationController
   def new
     @user = User.new

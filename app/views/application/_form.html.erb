@@ -6,13 +6,6 @@
   </tr>
 </div>
 
-<% if can? :delete, (@category || @subject || @resource) %>
-  <div class="destroy">
-    <%= f.label :_destroy, "Delete: " %>
-    <%= f.check_box :_destroy %>
-  </div>
-<% end %>
-
 <% if defined? category_id %>
   <div class="category_id">
     <%= f.hidden_field :category_id %>

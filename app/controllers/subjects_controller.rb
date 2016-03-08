@@ -1,3 +1,4 @@
+# Manages coordination of logic between views and model for subjects
 class SubjectsController < ApplicationController
   before_action :require_user, only: [:index, :show]
 
@@ -37,6 +38,7 @@ class SubjectsController < ApplicationController
   def destroy
     @category = Subject.find(params[:id]).category
     Subject.destroy(params[:id])
+    redirect_to category_path(@category)
   end
 
   def index

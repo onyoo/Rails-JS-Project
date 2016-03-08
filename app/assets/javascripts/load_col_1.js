@@ -2,6 +2,7 @@
 function loadIndexResponse(response) {
   hideHomeIndex();
   col1BackButton();
+  appendCreateButton('#col_1', response);
 
   if(response.categories){
     $.each($(response.categories), function(i, object) {
@@ -84,5 +85,4 @@ function pathSetter( object, class_name ) {
 
 function col1BackButton() {
   $('#col_1').append('<p id="back">Back</p>');
-  appendCreateButton('#col_1');
 }
