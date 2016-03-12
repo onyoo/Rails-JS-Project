@@ -16,7 +16,8 @@ function showResource(event) {
 
   $.get(url, function(data) {
     $(document.body).append('<div id="show_resource"></div>');
-    resource_html = $(data)[47];
+debugger;
+    resource_html = $(data)[37];
     $('#show_resource').append(resource_html);
 
   });

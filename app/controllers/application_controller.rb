@@ -23,7 +23,7 @@ class ApplicationController < ActionController::Base
   end
 
   def check_member_status
-    current_user.nil? || current_user.update_status(current_user)
+    current_user.nil? || current_user.update_status
   end
 
 end

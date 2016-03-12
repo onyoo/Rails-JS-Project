@@ -16,16 +16,16 @@ class User < ActiveRecord::Base
 
   validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, :message => "Invalid email"
 
-  def update_status(user)
-    resource_count = Resource.where(user_id: user.id).count
+  def update_status
+    resource_count = Resource.where(user_id: self.id).count
     if resource_count > 2
-      user.member_status = "Grand Master"
+      self.member_status = "Grand Master"
     elsif resource_count == (1 || 2)
-      user.member_status = "Legend"
+      self.member_status = "Legend"
     elsif resource_count == 0
-      user.member_status = "Little Grasshopper"
+      self.member_status = "Little Grasshopper"
     end
-    user.save
+    self.save
   end
 
   def self.find_or_creatre_by_omniauth(info)

@@ -29,6 +29,7 @@ function sendAjax(event) {
   }).done(function(response) {
 
     if(event.toElement.className == '') {
+      // loads col 1 -categories
       loadIndexResponse(response);
     }else if (event.toElement.className.includes('index_link')){
       loadCol2(response);
@@ -70,7 +71,7 @@ function sendForm(form) {
 function refreshPage() {
   location.reload(true);
 }
-
+// should use createElement(), and setAttribute() to be less explicit
 function appendCreateButton(columnId, response) {
   if((columnId == "#col_1") && (response.users == undefined)) {
     $(columnId).append('<div class="new_object"><a href="/categories/new" class="new_object_link">New!</a></div>');
@@ -100,6 +101,7 @@ function addCloseButton(form) {
 
 function removeForm() {
   refreshPage()
+  // below gets several form responses from rails...
   // $('#form').remove();
   // $('#form_background').remove();
 }

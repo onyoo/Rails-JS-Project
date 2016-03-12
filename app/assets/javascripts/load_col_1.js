@@ -4,6 +4,7 @@ function loadIndexResponse(response) {
   col1BackButton();
   appendCreateButton('#col_1', response);
 
+// Need to find better way to reduce repetition
   if(response.categories){
     $.each($(response.categories), function(i, object) {
       $('#col_1').prepend(createListItem(object));
@@ -39,7 +40,8 @@ function createListItem(object) {
     var className = classNameSetter(object.class_name.toLowerCase() );
     var return_var;
 
-    // for subjects and categories list items
+    // creates second half of item, and edit link of a tag for subjects and categories list items
+    // should use createElement(), and setAttribute() to be less explicit
     if (className == 'categories') {
       return_var = ('id="' + object.id + '" href="/' + path + '">' + object.name + '</a>' + '<a class="edit" id="' + object.id + '" href="/' + className + '/' + object.id + '/edit' + '" >Edit ' + object.name + ' <br>(for Legend & Master only)</a>');
     }else if(className == 'subjects'){
@@ -48,7 +50,7 @@ function createListItem(object) {
       return_var = ('id="' + object.id + '" href="/' + path + '">' + object.name + '</a>' + '<a class="edit" id="' + object.id + '" href="/categories/' + object.category.id + '/subjects/' + object.subject_id + '/' + className + '/' + object.id + '/edit' + '" >Edit ' + object.name + ' <br>(for Legend & Master only)</a>');
     }
 
-    // checks length of path to attach correct id for event listeners
+    // checks length of path to attach correct class for event listeners
     if(path.match(/\//g).length < 3) {
       return_var = ('<a class="index_link js_objects" ' + return_var);
     }else if( path.match(/\//g).length < 5 ) {
